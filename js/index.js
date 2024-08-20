@@ -12,3 +12,20 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const username = localStorage.getItem('username');
+    
+    // Si no hay usuario autenticado, redirigir a login.html
+    if (!username) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Manejo del botón de cerrar sesión
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', function () {
+        localStorage.removeItem('username');
+        window.location.href = 'login.html';
+    });
+});

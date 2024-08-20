@@ -15,5 +15,3 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'index.html';
     }
 });
-
-//Esto deberia ya estar en la main pero no entiendo porque no me aparecio
