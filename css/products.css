@@ -1,10 +1,13 @@
-/* Contenedor principal*/
+/* Contenedor principal */
 .product-list {
     margin-top: 20px;
+    
+      display: flex;
+    flex-wrap: wrap;
 }
 
-/* Estilo para cada producto*/
-.product-item {
+/* Estilo para la vista de lista (por defecto) */
+.product-item{
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
@@ -12,6 +15,8 @@
     margin-bottom: 15px;
     background-color: #fff;
     transition: box-shadow 0.3s ease;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .product-item:hover {
@@ -28,7 +33,11 @@
     background-position: center;
     margin-right: 20px;
 }
+.product-list:not(.grid-view) .product-image {
+    margin-right: 20px;
+}
 
+/* Estilo para el contenido */
 .product-content {
     flex-grow: 1;
 }
@@ -56,4 +65,38 @@
 .product-sold {
     font-size: 0.9rem;
     color: #999;
+}
+
+/* Estilo para la vista de grilla */
+.grid-view .product-list {
+    display: block;
+}
+
+/* Ajustes específicos para la vista en grilla */
+.grid-view .product-item {
+    display: flex;
+    flex-direction: column;
+    width: calc(33.33% - 15px);
+    margin-right: 15px; 
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.grid-view .product-image {
+    margin: 0;
+}
+
+/* Ajustes específicos para la imagen en la vista de grilla */
+.grid-view .product-image {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+/* Ajustes específicos para el contenido en la vista de grilla */
+.grid-view .product-content {
+    margin-top: 10px;
 }
