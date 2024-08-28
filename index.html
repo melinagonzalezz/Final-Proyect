@@ -30,6 +30,8 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <span id="username-display" class="navbar-text me-3"></span>
+            <button id="logoutButton" class="btn btn-outline-light">Cerrar sesión</button>
           </li>
         </ul>
       </div>
@@ -76,15 +78,43 @@
         </div>
       </div>
     </div>
+
+    <div class="help-icon">
+      <a href="#"><span>?</span></a>
+    </div>
+    
   </main>
   <footer class="text-muted">
     <div class="container">
+      <br>
+      <nav>
+        <ul>
+          <li><a href="#">Políticas de la empresa</a></li>
+          <br>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <br>
+          <li><a href="#">Contáctanos</a></li>
+          <br>
+          <li><a href="#">Métodos de pago</a></li>
+          <br>
+        </ul>
+      </nav>
+    <br>
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
+
   </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
