@@ -1,0 +1,120 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Verdana', serif;
+}
+  
+/* Estilos para dispositivos móviles */
+@media (max-width: 576px) {
+
+    main {
+        
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #loginForm {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 247px;
+        font-size: 18px
+    }
+
+    #loginForm input {
+        font-size: 11px;
+        width: 247px;
+    }
+
+    
+    #loginForm button {
+        text-align: center;
+        display: block;
+        
+    }
+    
+    footer ul{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: left;
+        font-size: 10px;
+        padding: 0;
+        margin: 0;
+        font-weight: 600;
+    }
+    footer nav ul li {
+        box-sizing: border-box;
+        margin: 5px 0;
+        width: calc(50% - 10px);
+        
+    }
+    footer .float-end {
+        float: none;
+        margin: 15px 0;
+    }
+}
+  
+/* Estilos para tabletas */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    #loginForm {
+        max-width: 760px;
+    }
+
+    #loginForm label {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #loginForm input {
+        max-width: 516px;
+        max-height: 50px;
+        font-size: 20px;
+    }
+
+    #loginForm button {
+        max-width: 188px;
+        max-height: 67px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+/* Estilos para dispositivos de escritorio */
+@media (min-width: 769px) {
+    body {
+        font-size: 18px;
+    }
+
+    #loginForm {
+        max-width: 613px;
+    }
+
+    #loginForm label {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #loginForm input {
+        width: 604px;
+        height: 62px;
+        font-size: 20px;
+    }
+
+    #loginForm button {
+        max-width: 191px;
+        max-height: 57px;
+        font-size: 24px;
+    }
+}
+  
