@@ -67,23 +67,55 @@ nav a {
   font-size: 38px;
 }
 
-/* footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+/* footer */
+footer {
+  background-color: #94b4f4;
+  color: white; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
 }
 
-footer p {
-  margin-bottom: .25rem;
-} */
-
-/* .site-header a {
-  color: white;
-  transition: ease-in-out color .15s;
+footer nav ul {
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; 
 }
 
-.site-header .dropdown-menu a {
-  color: black;
-} */
+footer nav ul li a {
+  color: white; 
+  text-decoration: none;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  footer nav ul {
+    flex-direction: column; 
+    align-items: center; 
+  }
+}
+
+@media (max-width: 768px) {
+  footer nav ul li a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 528px) {
+  footer {
+    font-size: 0.5rem; 
+  }
+  
+  footer nav ul li {
+    font-size: 0.5rem; 
+  }
+
+  footer nav ul li a {
+    font-size: 0.5rem; 
+  }
+}
 
 .dropzone {
   border: 2px dashed #6495ED;
@@ -229,31 +261,6 @@ a.custom-card:hover {
   background-color: white;
   border-radius: 50%; 
   margin-left: 10px; 
-}
-
-footer {
-  background-color: #6495ED; 
-  padding: 10px; 
-  color: white; 
-  align-items: right; 
-}
-
-footer nav ul {
-  list-style: none; 
-  margin: 0; 
-  padding: 0; 
-  display: flex; 
-}
-
-footer nav ul li {
-  margin-right: 15%; 
-}
-
-
-footer nav ul li a {
-  color: white; 
-  text-decoration: none; 
-  font-size: 18px;
 }
 .help-icon {
   position: fixed;

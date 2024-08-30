@@ -14,16 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     productItem.className = 'product-item';
 
                     productItem.innerHTML = `
-                        <div class="product-image" style="background-image: url('${product.image}')"></div>
-                        <div class="product-content">
-                            <h2>${product.name}</h2>
-                            <p>${product.description}</p>
-                            <p class="product-sold">Vendidos: ${product.soldCount}</p>
-                        </div>
-                        <div class="product-price">
-                            ${product.currency} ${product.cost}
-                        </div>
-                    `;
+                     <div class="product-image" style="background-image: url('${product.image}')"></div>
+                     <div class="product-content">
+                     <h2>${product.name}</h2>
+                     <p>${product.description}</p>
+                     <p class="product-sold">Vendidos: ${product.soldCount}</p>
+                     </div>
+                     <div class="product-price"> ${product.currency} ${product.cost}
+                     </div>`;
 
                     container.appendChild(productItem);
                 });
@@ -52,5 +50,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // Llamar a las funciones
     loadProducts();
     setupViewButtons();
-});
 
+    //Funcion para menu hamburgesa
+    document.getElementById("hamburger-menu").addEventListener("click", function() {
+        var navbar = document.getElementById("navbarHidden");
+        if (navbar.style.display === "flex") {
+            navbar.style.display = "none";
+        } else {
+            navbar.style.display = "flex";
+        }
+    })});
