@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadProducts();
     setupViewButtons();
 
-    //Funcion para menu hamburgesa
+    // Funcion para menu hamburgesa
     document.getElementById("hamburger-menu").addEventListener("click", function() {
         var navbar = document.getElementById("navbarHidden");
         if (navbar.style.display === "flex") {
