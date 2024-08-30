@@ -21,6 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'login.html';
         return;
     }
+    
+    //Mostrar nombre de usuario al inicial sesión
+    const usernameDisplay = document.getElementById ('username-display');
+    usernameDisplay.textContent = username;
 
     // Manejo del botón de cerrar sesión
     const logoutButton = document.getElementById('logoutButton');

@@ -11,47 +11,116 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/products.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
+  <!-- Nav 1 - Localidad / Moneda / Idioma -->
+  <nav id="nav1" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid px-5">
+      <!-- Grid para controlar la posición de los íconos -->
+      <div class="row w-100">
+        <!-- Íconos del lado izquierdo -->
+        <div class="col-3 d-flex align-items-start align-items-center">
+          <a href="#" class="nav-link mx-0">
+            <i class="bi bi-geo-alt"></i> Ubicacion
+          </a>
+        </div>
+
+        <!-- Columna intermedia para ofertas importantes -->
+        <div class="col-6 d-flex align-items-center justify-content-center full-height no-margin">
+          <p id="promocion-del-mes" class="text-uppercase text-center mb-0 text-white"></p>
+        </div>
+
+        <!-- Íconos del lado derecho -->
+        <div class="col-3 d-flex justify-content-end align-items-center">
+          <a href="#" class="nav-link">
+            <i class="bi bi-globe"></i>
+          </a>
+          <a href="#" class="nav-link">
+            USD
+          </a>
+        </div>
       </div>
     </div>
   </nav>
- 
+  <!-- Fin del Nav 1-->
 
-    <main class="container pb-5">
+  <!--Nav 2 - Directorios -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
+    <div class="container-fluid px-5">
+      
+      <!-- Botón del menú hamburguesa -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHidden" aria-controls="navbarHidden" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+      </button>
 
+      <!-- Grid para controlar la posición de los íconos -->
+      <div class="collapse navbar-collapse" id="navbarHidden"> 
+        <div class="row w-100">
+          <!-- Íconos del lado izquierdo -->
+          <div class="col-8 d-flex justify-content-start align-items-center">
+            <a class="nav-link fs-4" href="#">Inicio</a>
+            <a class="nav-link" href="#">Categorias</a>
+            <a class="nav-link" href="#">Vender</a>
+          </div>
+
+          <!-- Íconos del lado derecho -->
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            <a href="#" class="nav-link d-flex align-items-center">
+              <p id="Usuario-name" class="mb-0 me-2">Usuario</p>
+              <i class="bi bi-person"></i>
+            </a>
+            <a href="#" class="nav-link">
+              <i class="bi bi-heart"></i>
+            </a>
+            <a href="#" class="nav-link">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Fin nav 2 -->
+
+  <!-- Breadcrumbs - Navegador de rutas -->
+  <nav aria-label="breadcrumb" class="px-5 mb-0 col-12">
+    <ol class="breadcrumb align-items-center">
+      <li><a class="nav-link fs-2" href="#">Tienda</a></li>
+      <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="#">Categoría</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Autos</li>
+    </ol>
+  </nav>
+
+  <main class="container pb-5">
+    <div class="col-12">
       <br>
       <h1 class="text-right"> Autos </h1>
       <br>
-      <section id="product-list" class="product-list">
-     
-      </section>
-      
+      <div class="row align-items-end my-3">
+        <h6 class="col-8 my-0">Mostrando X - X de XXX resultados encontrados</h6>
+
+        <!-- Íconos del lado derecho -->
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <div class="btn-group" role="group" aria-label="Formato de visualización">
+            <button id="grid-view" type="button" class="btn btn-primary" aria-label="En lista">
+              <i class="bi bi-grid-3x3"></i>
+            </button>
+            <button id="list-view" type="button" class="btn btn-secondary" aria-label="En grilla">
+              <i class="bi bi-list"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="product-list" class="product-list grid-view-product-list"></section>
   </main>
 
   <footer class="text-muted">
-    <div class="container">
+    <div class="container-footer>
       <br>
       <nav>
         <ul>
@@ -65,14 +134,14 @@
           <br>
         </ul>
       </nav>
-    <br>
+      <br>
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
-
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -81,7 +150,7 @@
       <div></div>
     </div>
   </div>
-  
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>

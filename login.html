@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
   <style>
     body {
       background-color: rgb(248, 249, 250);
@@ -18,9 +19,9 @@
 
 <body>
   
-  <main class="mt-5">
+  <main class="container mt-5 d-flex justify-content-center">
     <div class="row justify-content-center">
-      <div class="col-md-4">
+      <div>
         <form id="loginForm">
           <div class="mb-3">
             <label for="username" class="form-label"> Ingrese su nombre de usuario: </label>
@@ -36,29 +37,24 @@
     </div>
   </main>
 
-  <footer class="text-muted">
+  <footer class="text-muted mt-5">
     <div class="container">
       <br>
       <nav>
-        <ul>
+        <ul class="list-unstyled d-flex justify-content-between justify-content-center">
           <li><a href="#">Políticas de la empresa</a></li>
-          <br>
           <li><a href="#">Sobre Nosotros</a></li>
-          <br>
           <li><a href="#">Contáctanos</a></li>
-          <br>
           <li><a href="#">Métodos de pago</a></li>
-          <br>
         </ul>
       </nav>
-    <br>
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
-
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -68,6 +64,7 @@
     </div>
   </div>
   <script src="js/login.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

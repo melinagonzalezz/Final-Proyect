@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
+    // Función para cargar productos
     function loadProducts() {
         fetch(url)
             .then(response => response.json())
@@ -13,18 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     productItem.className = 'product-item';
 
                     productItem.innerHTML = `
-                        <div class="product-image" style="background-image: url('${product.image}')"></div>
-                        <div class="product-content">
-                            <h2>${product.name}</h2>
-                            <br>
-                            <p>${product.description}</p>
-                            <br>
-                            <p class="product-sold">Vendidos: ${product.soldCount}</p>
-                        </div>
-                        <div class="product-price">
-                            ${product.currency} ${product.cost}
-                        </div>
-                    `;
+                     <div class="product-image" style="background-image: url('${product.image}')"></div>
+                     <div class="product-content">
+                     <h2>${product.name}</h2>
+                     <p>${product.description}</p>
+                     <p class="product-sold">Vendidos: ${product.soldCount}</p>
+                     </div>
+                     <div class="product-price"> ${product.currency} ${product.cost}
+                     </div>`;
 
                     container.appendChild(productItem);
                 });
@@ -32,6 +29,34 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error('Error al cargar los productos', error));
     }
 
-    loadProducts();
-});
+    // Función para configurar los botones de vista
+    function setupViewButtons() {
+        const productList = document.getElementById('product-list');
+        const gridViewButton = document.getElementById('grid-view');
+        const listViewButton = document.getElementById('list-view');
 
+        function switchToGridView() {
+            productList.classList.add('grid-view');
+        }
+
+        function switchToListView() {
+            productList.classList.remove('grid-view');
+        }
+
+        gridViewButton.addEventListener('click', switchToGridView);
+        listViewButton.addEventListener('click', switchToListView);
+    }
+
+    // Llamar a las funciones
+    loadProducts();
+    setupViewButtons();
+
+    // Funcion para menu hamburgesa
+    document.getElementById("hamburger-menu").addEventListener("click", function() {
+        var navbar = document.getElementById("navbarHidden");
+        if (navbar.style.display === "flex") {
+            navbar.style.display = "none";
+        } else {
+            navbar.style.display = "flex";
+        }
+    })});
