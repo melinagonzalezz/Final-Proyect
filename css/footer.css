@@ -1,40 +1,48 @@
 /* footer */
-footer .container {
+* {
+  box-sizing: boreder-box;
+}
+
+footer {
     background-color: #94b4f4;
     padding: 10px; 
-    color: white; 
+    margin: 0;
     display: flex; 
-    /* flex-direction: column;  */
+    flex-direction: column; 
     align-items: center;
-  }
+    width: 100vw !important; 
+  } 
   
-  footer.container nav ul {
+  footer nav ul {
     list-style: none; 
     margin: 0; 
     padding: 0; 
     display: flex; 
-    flex-direction: column; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* flex-direction: column;  */
+    width: 100%;
   }
   
-  footer.container nav ul li {
-    margin-bottom: 10px; 
+  footer nav ul li {
+    margin: 5px 0; 
   }
   
-  footer.container nav ul li a {
+  footer nav ul li a {
     color: white; 
     text-decoration: none;
     font-size: 18px;
   }
   
-
-  @media (max-width: 1024px) {
+/* Medias para pantallas medianas*/
+  @media  (min-width: 529px) and (max-width: 768px) {
     footer .container nav ul {
-      flex-direction: column; 
+      /* flex-direction: column;  */
       align-items: center; 
+      justify-content: center;
+      flex-wrap: wrap;
     }
-  }
   
-  @media (max-width: 768px) {
     footer {
       background-color: #94b4f4;
       padding: 15px; 
@@ -47,8 +55,8 @@ footer .container {
     footer nav ul li a {
       font-size: 16px;
     }
+
   }
-  
   
   /* Footer para dispositivos móviles */
   @media (max-width: 528px) {
@@ -57,33 +65,33 @@ footer .container {
       font-size: 0.5rem; 
     }
     
+    footer ul{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: left;
+      font-size: 10px;
+      padding: 0;
+      margin: 0;
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+
     footer nav ul li {
-      margin-bottom: 20px; 
+        box-sizing: border-box;
+        margin: 5px 0;
+        width: calc(50% - 10px);
+        margin-bottom: 20px; 
       font-size: 0.5rem; 
     }
   
     footer nav ul li a {
       font-size: 0.5rem; 
     }
-    
-    footer ul{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: left;
-        font-size: 10px;
-        padding: 0;
-        margin: 0;
-        font-weight: 600;
-    }
-    footer nav ul li {
-        box-sizing: border-box;
-        margin: 5px 0;
-        width: calc(50% - 10px);
-        
-    }
+
     footer .float-end {
         float: none;
-        margin: 15px 0;
+        margin: 15
+        px 0;
     }
   }
   
