@@ -11,7 +11,6 @@ body {
 @media (max-width: 576px) {
 
     main {
-        
         display: flex;
         justify-content: center; 
         align-items: center; 
@@ -38,26 +37,6 @@ body {
         text-align: center;
         display: block;
         
-    }
-    
-    footer ul{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: left;
-        font-size: 10px;
-        padding: 0;
-        margin: 0;
-        font-weight: 600;
-    }
-    footer nav ul li {
-        box-sizing: border-box;
-        margin: 5px 0;
-        width: calc(50% - 10px);
-        
-    }
-    footer .float-end {
-        float: none;
-        margin: 15px 0;
     }
 }
   

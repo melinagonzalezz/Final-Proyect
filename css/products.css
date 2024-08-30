@@ -1,5 +1,5 @@
 /* Estilos del navbar y menú hamburguesa */
-nav {
+#nav-1, #nav-2  {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,18 +7,18 @@ nav {
     padding: 10px;
 }
 
-nav ul {
+#nav-1 ul, #nav-2 ul {
     display: flex;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-nav ul li {
+#nav-1 ul li, #nav-2 ul li {
     margin-right: 20px;
 }
 
-nav ul li a {
+#nav-1 ul li a, #nav-2 ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 1.2em;
@@ -137,14 +137,14 @@ nav ul li a {
 /* Estilos para celulares */
 
 @media (max-width: 576px) {
-    #navbar {
+    #nav-1, #nav-2 {
         display: none;
         flex-direction: column;
         width: 100%;
         background-color: #333;
     }
 
-    nav ul li {
+    #nav-1 ul li, #nav-2 ul li {
         margin-right: 0;
         text-align: center;
         padding: 10px 0;
@@ -154,15 +154,15 @@ nav ul li a {
         display: block;
     } 
 
-    .nav1 {
+    #nav-1 {
         padding: 6px 0;
     }
 
-    .nav1 ul li {
+    #nav-1 ul li {
         margin-right: 0.5rem; 
     }
 
-    .nav1 ul li a {
+    #nav-1 ul li a {
         font-size: 0.5rem; 
     }
 
@@ -239,22 +239,18 @@ nav ul li a {
 /* Estilos para tablets */
 
 @media (min-width: 577px) and (max-width: 768px) {
-    #navbar {
+    #nav-1, #nav-2 {
         display: none;
         flex-direction: column;
         width: 100%;
         background-color: #333;
     }
 
-    nav ul li {
+    #nav-1 ul li, #nav-2 ul li {
         margin-right: 0;
         text-align: center;
         padding: 10px 0;
     }
-
-    #hamburger-menu {
-        display: block;
-    } 
     
     .breadcrumb a.nav-link {
         font-size: 0.9em;
