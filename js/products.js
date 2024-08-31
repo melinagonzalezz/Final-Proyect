@@ -52,26 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Función para menú hamburguesa
-    function setupHamburgerMenu() {
-        const hamburgerMenu = document.getElementById("hamburger-menu");
-        const navbar = document.getElementById("navbarHidden");
-
-        if (hamburgerMenu && navbar) {
-            hamburgerMenu.addEventListener("click", function() {
-                if (navbar.style.display === "flex") {
-                    navbar.style.display = "none";
-                } else {
-                    navbar.style.display = "flex";
-                }
-            });
-        } else {
-            console.error('Menú hamburguesa o barra de navegación no encontrados');
-        }
-    }
-
     // Llamar a las funciones
     loadProducts();
     setupViewButtons();
-    setupHamburgerMenu();
 });

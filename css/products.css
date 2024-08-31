@@ -138,7 +138,6 @@
 
 @media (max-width: 576px) {
     #nav-1, #nav-2 {
-        display: none;
         flex-direction: column;
         width: 100%;
         background-color: #333;
@@ -149,10 +148,6 @@
         text-align: center;
         padding: 10px 0;
     }
-
-    #hamburger-menu {
-        display: block;
-    } 
 
     #nav-1 {
         padding: 6px 0;
@@ -165,6 +160,10 @@
     #nav-1 ul li a {
         font-size: 0.5rem; 
     }
+
+    .col-3 .nav-link { 
+        display: none;
+      }
 
     
     .breadcrumb {
@@ -239,8 +238,8 @@
 /* Estilos para tablets */
 
 @media (min-width: 577px) and (max-width: 768px) {
+    
     #nav-1, #nav-2 {
-        display: none;
         flex-direction: column;
         width: 100%;
         background-color: #333;
