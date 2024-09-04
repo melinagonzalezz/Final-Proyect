@@ -59,21 +59,21 @@
         <div class="row w-100">
           <!-- Íconos del lado izquierdo -->
           <div class="col-8 d-flex justify-content-start align-items-center">
-            <a class="nav-link fs-4" href="#">Inicio</a>
-            <a class="nav-link" href="#">Categorias</a>
-            <a class="nav-link" href="#">Vender</a>
+            <a class="nav-link fs-4" href="index.html">Inicio</a>
+            <a class="nav-link" href="categories.html">Categorias</a>
+            <a class="nav-link" href="sell.html">Vender</a>
           </div>
 
           <!-- Íconos del lado derecho -->
           <div class="col-4 d-flex justify-content-end align-items-center">
-            <a href="#" class="nav-link d-flex align-items-center">
+            <a href="my-profile.html" class="nav-link d-flex align-items-center">
               <p id="Usuario-name" class="mb-0 me-2">Usuario</p>
               <i class="bi bi-person"></i>
             </a>
             <a href="#" class="nav-link">
               <i class="bi bi-heart"></i>
             </a>
-            <a href="#" class="nav-link">
+            <a href="cart.html" class="nav-link">
               <i class="fas fa-shopping-cart"></i>
             </a>
           </div>
@@ -86,20 +86,20 @@
   <!-- Breadcrumbs - Navegador de rutas -->
   <nav aria-label="breadcrumb" class="px-5 mb-0 col-12">
     <ol class="breadcrumb align-items-center">
-      <li><a class="nav-link fs-2" href="#">Tienda</a></li>
-      <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-      <li class="breadcrumb-item"><a href="#">Categoría</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Autos</li>
+      <li><a class="nav-link fs-2" href="index.html">Tienda</a></li>
+      <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="categories.html">Categoría</a></li>
+      <li class="breadcrumb-item active" aria-current="page"></li>
     </ol>
   </nav>
 
   <main class="container pb-5">
     <div class="col-12">
       <br>
-      <h1 class="text-right"> Autos </h1>
+      <h1 class="text-right"></h1>
       <br>
       <div class="row align-items-end my-3">
-        <h6 class="col-8 my-0">Mostrando X - X de XXX resultados encontrados</h6>
+        <h6 class="col-8 my-0"></h6>
 
         <!-- Íconos del lado derecho -->
         <div class="col-4 d-flex justify-content-end align-items-center">
@@ -115,7 +115,40 @@
       </div>
     </div>
 
+    <!-- Filtros --> 
+
+    <div class="row my-4">
+
+      <div class="col-md-4">
+       <label for="min-price" class="form-label"> Precio Mínimo </label>
+       <input type="number" class="form-control" id="min-price" placeholder="Precio mínimo">
+      </div>
+
+      <div class="col-md-4">
+        <label for="max-price" class="form-label"> Precio Máximo </label>
+        <input type="number" class="form-control" id="max-price" placeholder="Precio máximo">
+     </div>
+
+     <div>
+      <br>
+       <button class="btn btn-primary" id="clear-filter"> Limpiar </button>
+     </div>
+
+      <div class="col-md-4">
+        <br>
+      <label for="sort-options" class="form-label"> Ordenar por: </label>
+      <br>
+      <select class="form-select" id="sort-options">
+         <option value="asc-price"> Precio ascendente</option>
+         <option value="des-price"> Precio descendente</option>
+         <option value="des-relevance"> Mayor relevancia</option>
+      </select>
+     </div>
+    
+   </div>
+
     <section id="product-list" class="product-list grid-view-product-list"></section>
+
   </main>
 
   <footer class="text-muted">
