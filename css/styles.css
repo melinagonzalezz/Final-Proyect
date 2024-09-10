@@ -30,7 +30,7 @@ nav a {
 
 .jumbotron {
   height: 50vh;
-  padding: 5em inherit;
+  padding: 5em;
   margin-bottom: 0;
   background-color: #53C0FB;
   background: url('../img/cover_back.png');
@@ -181,7 +181,7 @@ a.custom-card:hover {
 }
 
 /* enlaces */
-.site-header nav ul {
+.site-header nav ul { 
   list-style: none; /* elimina puntos */
   margin: 0; /* elimina el margen */
   padding: 0; /* elimina el padding */
@@ -212,6 +212,7 @@ a.custom-card:hover {
   border-radius: 50%; 
   margin-left: 10px; 
 }
+
 .help-icon {
   position: fixed;
   bottom: 20px;
@@ -231,9 +232,67 @@ a.custom-card:hover {
 }
 
 .help-icon:hover {
-  background-color: #4169E1;
+background-color: #4169E1;
 }
 
 
+/* Estilos del navbar */
+
+#nav-1 {
+  background-color: #343a40; 
+}
 
 
+.navbar-nav {
+  margin-left: auto; 
+}
+
+.navbar-toggler {
+  border-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml,...'); 
+}
+
+#logoutButton {
+  margin-left: 10px;
+}
+
+/* Estilos de la barra de navegación en pantallas pequeñas */
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .jumbotron {
+    padding: 3em;
+    height: auto; 
+  }
+
+  .jumbotron .lead {
+    font-size: 24px; 
+  }
+
+  .alert {
+    width: 90%; 
+  }
+
+  .help-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jumbotron .lead {
+    font-size: 20px; 
+  }
+}
