@@ -53,9 +53,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
                 <div class="product-price">
                     ${product.currency} ${product.cost}
-                </div>`;
+                </div>
+                <button id="ver-btn-${product.id}" class="ver-btn">Ver detalles</button>
+            `;
 
             container.appendChild(productItem);
+
+            // Agregar evento para guardar ID y redirigir
+            document.getElementById(`ver-btn-${product.id}`).addEventListener('click', function() {
+                saveProductId(product.id, categoryId);
+            });
         });
     }
 
@@ -136,3 +143,11 @@ document.addEventListener("DOMContentLoaded", function() {
     loadProducts();
     setupViewButtons();
 });
+
+
+// Función para guardar el ID y redirigir a la página de detalles
+function saveProductId(id, category) {
+// Guardar el ID y la categoría en localStorage o redirigir con URL
+const queryString = `?id=${id}&category=${category}`;
+window.location.href = `product-info.html${queryString}`;
+}
