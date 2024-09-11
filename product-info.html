@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/product-info.css" rel="stylesheet" />
+    <link href="css/footer.css" rel="stylesheet" />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/product-info.css" rel="stylesheet">
-  <link href="css/footer.css" rel="stylesheet">
-</head>
-
-<body>
-  
+  <body>
     <!-- Nav 1 - Localidad / Moneda / Idioma -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-1">
       <div class="container-fluid px-5">
@@ -28,62 +35,70 @@
               <i class="bi bi-geo-alt"></i> Ubicacion
             </a>
           </div>
-  
+
           <!-- Columna intermedia para ofertas importantes -->
-          <div class="col-6 d-flex align-items-center justify-content-center full-height no-margin">
-            <p id="promocion-del-mes" class="text-uppercase text-center mb-0 text-white"></p>
+          <div
+            class="col-6 d-flex align-items-center justify-content-center full-height no-margin"
+          >
+            <p
+              id="promocion-del-mes"
+              class="text-uppercase text-center mb-0 text-white"
+            ></p>
           </div>
-  
+
           <!-- Íconos del lado derecho -->
           <div class="col-3 d-flex justify-content-end align-items-center">
             <a href="#" class="nav-link">
               <i class="bi bi-globe"></i>
             </a>
-            <a id="changeCurrency" href="#" class="nav-link">
-              USD
-            </a>
+            <a id="changeCurrency" href="#" class="nav-link"> USD </a>
           </div>
         </div>
       </div>
     </nav>
     <!-- Fin del Nav 1-->
-  
-    <!--Nav 2 - Directorios -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark" id="nav-2">
-      <div class="container-fluid px-5">
-        <!-- Botón del menú hamburguesa -->
+
+       <!--Nav 2 - Directorios -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
+      <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
+        
+        <!-- Botón del menú hamburguesa (se mostrará en pantallas pequeñas) -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHidden" aria-controls="navbarHidden" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-      </button>
-        <!-- Grid para controlar la posición de los íconos -->
-        <div class="collapse navbar-collapse" id="navbarHidden"> 
-          <div class="row w-100">
-            <!-- Íconos del lado izquierdo -->
-            <div class="col-8 d-flex justify-content-start align-items-center">
+        </button>
+
+        <!-- Contenido del menú colapsable -->
+        <div class="collapse navbar-collapse" id="navbarHidden">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
               <a class="nav-link fs-4" href="index.html">Inicio</a>
-              <a class="nav-link" href="categories.html">Categorias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
-            </div>
-  
-            <!-- Íconos del lado derecho -->
-            <div class="col-4 d-flex justify-content-end align-items-center">
-              <a href="my-profile.html" class="nav-link d-flex align-items-center">
-                <p id="Usuario-name" class="mb-0 me-2">Usuario</p>
-                <i class="bi bi-person"></i>
-              </a>
-              <a href="#" class="nav-link">
-                <i class="bi bi-heart"></i>
-              </a>
-              <a href="cart.html" class="nav-link">
-                <i class="fas fa-shopping-cart"></i>
-              </a>
-            </div>
-          </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Íconos de usuario, favorito y carrito -->
+        <div class="navbar-icons d-flex ms-auto">
+          <a href="my-profile.html" class="nav-link d-flex align-items-center">
+            <p id="Usuario-name" class="mb-0 me-2">Usuario</p>
+            <i class="bi bi-person"></i>
+          </a>
+          <a href="#" class="nav-link">
+            <i class="bi bi-heart"></i>
+          </a>
+          <a href="cart.html" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
         </div>
       </div>
     </nav>
     <!-- Fin nav 2 -->
-  
+
     <!-- Breadcrumbs - Navegador de rutas -->
     <nav aria-label="breadcrumb" class="px-5 mb-0 col-12">
       <ol class="breadcrumb align-items-center">
@@ -94,205 +109,266 @@
       </ol>
     </nav>
     <!-- Fin Breadcrumbs -->
-  <main>
-    
-    <!-- Section de imagenes e info -->
-    <section class="container mt-5">
-      <div class="row">
-        
-        <!-- Imágenes de producto -->
-        <div class="product-images col-md-7">
-          <div>
-            <img id="main-image" class="img-fluid" src="ruta-de-la-imagen-principal.jpg" alt="Producto Principal">
+    <main>
+      <!-- Section de imagenes e info -->
+      <section class="container mt-5">
+        <div class="row">
+          <!-- Imágenes de producto -->
+          <div class="product-images col-md-7">
+            <div>
+              <img
+                id="main-image"
+                class="img-fluid"
+                src="ruta-de-la-imagen-principal.jpg"
+                alt="Producto Principal"
+              />
+            </div>
+            <div class="thumbnail-images d-flex justify-content-start mt-3">
+              <!-- Las miniaturas se insertan aca mediante js -->
+            </div>
           </div>
-          <div class="thumbnail-images d-flex justify-content-start mt-3">
-            <!-- Las miniaturas se insertan aca mediante js -->
-          </div>
-        </div>
 
-        <!-- Info del producto -->
-        <!-- Producto -->
-        <div class="col-md-5">
-          <div class="product-content">
-            <p class="product-sold text-muted">+ XXX vendidos</p>
-            <h2 class="product-name">Nombre del Producto</h2>
-            <p class="product-code text-muted">Cod-0000000</p>
-            <div class="product-rating">
-              <p>⭐⭐⭐⭐⭐</p>
-              <p>5.0</p>
+          <!-- Info del producto -->
+          <!-- Producto -->
+          <div class="col-md-5">
+            <div class="product-content">
+              <p class="product-sold text-muted">+ XXX vendidos</p>
+              <h2 class="product-name">Nombre del Producto</h2>
+              <p class="product-code text-muted">Cod-0000000</p>
+              <div class="product-rating">
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>5.0</p>
+              </div>
+              <div class="product-price">
+                <p class="h4 mt-3">$100</p>
+              </div>
             </div>
-            <div class="product-price">
-              <p class="h4 mt-3">$100</p>
+
+            <!-- Eleccion de procucto -->
+            <div>
+              <!-- Eleccion de color -->
+              <div class="product-colors">
+                <label for="colorSelect" class="form-label">Color:</label>
+                <select class="form-select" id="colorSelect">
+                  <option value="red">Rojo</option>
+                  <option value="blue">Azul</option>
+                  <option value="green">Verde</option>
+                </select>
+              </div>
+
+              <!-- Eleccion de cantidad -->
+              <div class="product-quantity">
+                <label for="quantityInput" class="form-label">Cantidad:</label>
+                <div class="input-group">
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="buttonDecrement"
+                  >
+                    −
+                  </button>
+                  <input
+                    type="number"
+                    class="form-control text-center"
+                    id="quantityInput"
+                    value="1"
+                    min="1"
+                    readonly
+                  />
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="buttonIncrement"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <!-- Eleccion de procucto -->
-          <div>
-            <!-- Eleccion de color -->
-            <div class="product-colors">
-              <label for="colorSelect" class="form-label">Color:</label>
-              <select class="form-select" id="colorSelect">
-                <option value="red">Rojo</option>
-                <option value="blue">Azul</option>
-                <option value="green">Verde</option>
-              </select>
-            </div>
-            
-            <!-- Eleccion de cantidad -->
-            <div class="product-quantity">
-              <label for="quantityInput" class="form-label">Cantidad:</label>
-              <div class="input-group">
-                <button class="btn btn-outline-secondary" type="button" id="buttonDecrement">−</button>
-                <input type="number" class="form-control text-center" id="quantityInput" value="1" min="1" readonly>
-                <button class="btn btn-outline-secondary" type="button" id="buttonIncrement">+</button>
+
+            <!-- Botones -->
+            <div id="seccion-botones" class="mt-4 row">
+              <!-- Botón de Comprar -->
+              <div class="col-12 mt-4">
+                <button id="btn-comprar" class="btn btn-primary btn-lg w-100">
+                  Comprar
+                </button>
+              </div>
+
+              <!-- Botón de favorito y añadir al carrito -->
+              <div class="col-12 mt-4">
+                <div class="btn-group w-100" role="group">
+                  <button id="favBtn" class="btn btn-primary btn-lg col-2">
+                    <i class="bi bi-heart" id="favoriteIcon"></i>
+                  </button>
+                  <button
+                    id="btn-add-to-cart"
+                    class="btn btn-primary btn-lg col-10"
+                  >
+                    Añadir al carrito
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          
-          <!-- Botones -->
-          <div id="seccion-botones" class="mt-4 row">
-            <!-- Botón de Comprar -->
-            <div class="col-12 mt-4">
-                <button id="btn-comprar" class="btn btn-primary btn-lg w-100">Comprar</button>
-            </div> 
+        </div>
+      </section>
 
-            <!-- Botón de favorito y añadir al carrito -->
-            <div class="col-12 mt-4">
-                <div class="btn-group w-100" role="group">
-                    <button id="favBtn" class="btn btn-primary btn-lg col-2">
-                        <i class="bi bi-heart" id="favoriteIcon"></i>
-                    </button>
-                    <button id="btn-add-to-cart" class="btn btn-primary btn-lg col-10">Añadir al carrito</button>
-                </div>
+      <!-- Seccion de info detallada -->
+      <section class="container mt-5">
+        <div class="row mt-5">
+          <!-- Navegador de secciones -->
+          <div class="col-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item active">
+                <a
+                  class="nav-link active"
+                  id="descripcion-tab"
+                  data-toggle="tab"
+                  href="#descripcion"
+                  role="tab"
+                  aria-controls="descripcion"
+                  aria-selected="true"
+                  >Descripción</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="reseñas-tab"
+                  data-toggle="tab"
+                  href="#reseñas"
+                  role="tab"
+                  aria-controls="reseñas"
+                  aria-selected="false"
+                  >Reseñas</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="envio-tab"
+                  data-toggle="tab"
+                  href="#envio"
+                  role="tab"
+                  aria-controls="envio"
+                  aria-selected="false"
+                  >Envio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="vendedor-tab"
+                  data-toggle="tab"
+                  href="#vendedor"
+                  role="tab"
+                  aria-controls="vendedor"
+                  aria-selected="false"
+                  >Vendedor</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Seccion elegida -->
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="descripcion"
+              role="tabpanel"
+              aria-labelledby="descripcion-tab"
+            >
+              <p class="mt-4">Descripción completa del producto...</p>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="reseñas"
+              role="tabpanel"
+              aria-labelledby="opiniones-tab"
+            >
+              <p class="mt-4">(Próximamente)</p>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="envio"
+              role="tabpanel"
+              aria-labelledby="opiniones-tab"
+            >
+              <p class="mt-4">(Próximamente)</p>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="vendedor"
+              role="tabpanel"
+              aria-labelledby="opiniones-tab"
+            >
+              <p class="mt-4">(Próximamente)</p>
             </div>
           </div>
-
         </div>
-      
-      </div>
-    </section>
+      </section>
 
-    <!-- Seccion de info detallada -->
-    <section class="container mt-5">
-      <div class="row mt-5">
-
-        <!-- Navegador de secciones -->
-        <div class="col-12">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item active">
-              <a class="nav-link active" 
-                 id="descripcion-tab" 
-                 data-toggle="tab" 
-                 href="#descripcion" 
-                 role="tab" 
-                 aria-controls="descripcion" 
-                 aria-selected="true">Descripción</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" 
-                 id="reseñas-tab" 
-                 data-toggle="tab" 
-                 href="#reseñas" 
-                 role="tab" 
-                 aria-controls="reseñas" 
-                 aria-selected="false">Reseñas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" 
-                 id="envio-tab" 
-                 data-toggle="tab" 
-                 href="#envio" 
-                 role="tab" 
-                 aria-controls="envio" 
-                 aria-selected="false">Envio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" 
-                 id="vendedor-tab" 
-                 data-toggle="tab" 
-                 href="#vendedor" 
-                 role="tab" 
-                 aria-controls="vendedor" 
-                 aria-selected="false">Vendedor</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Seccion elegida -->
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
-              <p class="mt-4">Descripción completa del producto...</p>
-          </div>
-          <div class="tab-pane fade" id="reseñas" role="tabpanel" aria-labelledby="opiniones-tab">
-              <p class="mt-4"> (Próximamente)</p>
-          </div>
-          <div class="tab-pane fade" id="envio" role="tabpanel" aria-labelledby="opiniones-tab">
-            <p class="mt-4">(Próximamente)</p>
-        </div>
-        <div class="tab-pane fade" id="vendedor" role="tabpanel" aria-labelledby="opiniones-tab">
-          <p class="mt-4"> (Próximamente) </p>
-    </div>
-
-        </div>
-
-      </div>
-    </section>
-    
-    <!-- Section 'Te puede interesar' -->
-    <section class="container mt-5">
-      <h4 class="mb-4">Te puede interesar</h4>
-      <div class="d-flex align-items-center">
+      <!-- Section 'Te puede interesar' -->
+      <section class="container mt-5">
+        <h4 class="mb-4">Te puede interesar</h4>
+        <div class="d-flex align-items-center">
           <button class="btn btn-primary" id="prevBtn">&lt;</button>
-          <div class="row flex-nowrap overflow-hidden" id="related-products" style="scroll-snap-type: x mandatory;">
-              <!-- Las tarjetas de productos se generarán aquí -->
+          <div
+            class="row flex-nowrap overflow-hidden"
+            id="related-products"
+            style="scroll-snap-type: x mandatory"
+          >
+            <!-- Las tarjetas de productos se generarán aquí -->
           </div>
           <button class="btn btn-primary" id="nextBtn">&gt;</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-muted mt-5">
+      <div class="container">
+        <br />
+        <nav>
+          <ul>
+            <li><a href="#">Políticas de la empresa</a></li>
+            <br />
+            <li><a href="#">Sobre Nosotros</a></li>
+            <br />
+            <li><a href="#">Contáctanos</a></li>
+            <br />
+            <li><a href="#">Métodos de pago</a></li>
+            <br />
+          </ul>
+        </nav>
+        <br />
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
       </div>
-    </section>
-    
+    </footer>
 
-  </main>
-
-  <footer class="text-muted mt-5">
-    <div class="container">
-      <br>
-      <nav>
-        <ul>
-          <li><a href="#">Políticas de la empresa</a></li>
-          <br>
-          <li><a href="#">Sobre Nosotros</a></li>
-          <br>
-          <li><a href="#">Contáctanos</a></li>
-          <br>
-          <li><a href="#">Métodos de pago</a></li>
-          <br>
-        </ul>
-      </nav>
-      <br>
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </footer>
 
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>
