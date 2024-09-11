@@ -5,11 +5,20 @@
 
 body {
     font-family: 'Verdana', serif;
+    background-image: url(/img/Login\ Desktop.png); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
   
 /* Estilos para dispositivos móviles */
 @media (max-width: 576px) {
-
+body {
+    background-image: url(/img/Login\ cel.png); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
     main {
         display: flex;
         justify-content: center; 
@@ -44,7 +53,12 @@ body {
 @media (min-width: 577px) and (max-width: 768px) {
     body {
         font-size: 18px;
+        background-image: url(/img/Login\ tablet.png); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
     }
+    
 
     #loginForm {
         max-width: 760px;
