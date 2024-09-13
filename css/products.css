@@ -212,6 +212,14 @@
         .product-price {
             font-size: 0.5rem; 
             word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn-outline-secondary {
+            font-size: 0.7rem;
+            padding: 0.4rem 0.8rem;
+            margin-top: 0.5rem;
         }
     
         .product-sold {
