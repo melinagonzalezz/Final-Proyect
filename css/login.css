@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Verdana', serif;
+    background-image: url(/img/Login-Desktop.png); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+/* Navbar siempre visible */
+.navbar {
+    font-size: 24px;
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #000;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 576px) {
+    body {
+        background-image: url(/img/Login-cel.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    main {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #loginForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 247px;
+        font-size: 18px;
+    }
+
+    #loginForm input {
+        font-size: 11px;
+        width: 247px;
+    }
+
+    #loginForm button {
+        text-align: center;
+        display: block;
+    }
+}
+
+/* Estilos para tabletas */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        font-size: 18px;
+        background-image: url(/img/Login-tablet.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .navbar-brand {
+        font-size: 20px;
+    }
+
+    #loginForm {
+        max-width: 760px;
+    }
+
+    #loginForm label {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #loginForm input {
+        max-width: 516px;
+        max-height: 50px;
+        font-size: 20px;
+    }
+
+    #loginForm button {
+        max-width: 188px;
+        max-height: 67px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+/* Estilos para dispositivos de escritorio */
+@media (min-width: 769px) {
+    body {
+        font-size: 18px;
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+    }
+
+    #loginForm {
+        max-width: 613px;
+    }
+
+    #loginForm label {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #loginForm input {
+        width: 604px;
+        height: 62px;
+        font-size: 20px;
+    }
+
+    #loginForm button {
+        max-width: 191px;
+        max-height: 57px;
+        font-size: 24px;
+    }
+}

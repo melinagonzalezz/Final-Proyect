@@ -30,7 +30,7 @@ nav a {
 
 .jumbotron {
   height: 50vh;
-  padding: 5em inherit;
+  padding: 5em;
   margin-bottom: 0;
   background-color: #53C0FB;
   background: url('../img/cover_back.png');
@@ -67,26 +67,8 @@ nav a {
   font-size: 38px;
 }
 
-footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-footer p {
-  margin-bottom: .25rem;
-}
-
-.site-header a {
-  color: white;
-  transition: ease-in-out color .15s;
-}
-
-.site-header .dropdown-menu a {
-  color: black;
-}
-
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #6495ED;
   border-radius: 5px;
   background: white;
 }
@@ -166,7 +148,7 @@ footer p {
 
 #spinner-wrapper {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #6495ED;
   width: 100%;
   height: 100%;
   top: 0;
@@ -187,4 +169,130 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+.site-header {
+  background-color: #6495ED;
+  padding: 10px; /* espaciado */
+  color: white; /* color del texto*/
+  display: flex; /*fila */
+  justify-content: space-between; /* espacio entre cosas */
+  align-items: center; /* alinear */
+}
+
+/* enlaces */
+.site-header nav ul { 
+  list-style: none; /* elimina puntos */
+  margin: 0; /* elimina el margen */
+  padding: 0; /* elimina el padding */
+  display: flex; /*fila */
+}
+
+.site-header nav ul li {
+  margin-right: 20px; /* espacio entre los enlaces */
+}
+
+.site-header nav ul li a {
+  color: white;
+  text-decoration: none; /* elimina el subrayado */
+  font-size: 16px; /* tamaño de fuente*/
+}
+
+/*íconos*/
+.nav-icons {
+  display: flex; /*fila */
+  align-items: center; /* alinear */
+}
+
+/* íconos específicos */
+.nav-icons .icon {
+  width: 20px; /* ancho*/
+  height: 20px; /* altura */
+  background-color: white;
+  border-radius: 50%; 
+  margin-left: 10px; 
+}
+
+.help-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1434A4;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(71, 2, 246, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.help-icon:hover {
+background-color: #4169E1;
+}
+
+
+/* Estilos del navbar */
+
+#nav-1 {
+  background-color: #343a40; 
+}
+
+
+.navbar-nav {
+  margin-left: auto; 
+}
+
+.navbar-toggler {
+  border-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml,...'); 
+}
+
+#logoutButton {
+  margin-left: 10px;
+}
+
+/* Estilos de la barra de navegación en pantallas pequeñas */
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .jumbotron {
+    padding: 3em;
+    height: auto; 
+  }
+
+  .jumbotron .lead {
+    font-size: 24px; 
+  }
+
+  .alert {
+    width: 90%; 
+  }
+
+  .help-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jumbotron .lead {
+    font-size: 20px; 
+  }
 }
