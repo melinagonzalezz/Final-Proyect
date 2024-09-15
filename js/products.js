@@ -51,11 +51,19 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>${product.description}</p>
                     <p class="product-sold">Vendidos: ${product.soldCount}</p>
                 </div>
-                <div class="product-price">
+                <div class="product-price"> 
                     ${product.currency} ${product.cost}
-                </div>`;
-
+    
+                <button id="ver-btn-${product.id}" class="btn btn-outline-secondary">Ver detalles</button>
+                </div>
+            `;
+            
             container.appendChild(productItem);
+
+            // Agregar evento para guardar ID y redirigir
+            document.getElementById(`ver-btn-${product.id}`).addEventListener('click', function() {
+                saveProductId(product.id, categoryId);
+            });
         });
     }
 
@@ -132,7 +140,39 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('sort-options').addEventListener('change', filterAndSortProducts);
     document.getElementById("clear-filter").addEventListener("click", clearFilters);
 
-    // Llamar a las funciones
+
+// Función para guardar el ID y redirigir a la página de detalles
+function saveProductId(id, category) {
+// Guardar el ID y la categoría en localStorage o redirigir con URL
+const queryString = `?id=${id}&category=${category}`;
+window.location.href = `product-info.html${queryString}`;
+}
+
+//Desafíate, función buscar productos
+function buscarEnProductos(e){
+
+    const buscador = document.getElementById('buscador');
+    const productos = document.querySelectorAll('.product-item');
+
+    buscador.addEventListener('input', buscarEnProductos);
+    const letras = e.target.value.toLowerCase();
+
+
+    productos.forEach(producto => {
+      const titulo = producto.querySelector('h2').textContent.toLowerCase();
+      const descripcion = producto.querySelector('p').textContent.toLowerCase();
+      
+
+      // Mostrar u ocultar los productos que coinciden con el texto de búsqueda
+      if (titulo.includes(letras) || descripcion.includes(letras)) {
+        producto.style.display = '';
+      } else {
+        producto.style.display = 'none';
+      }
+    })
+}
     loadProducts();
     setupViewButtons();
+    buscarEnProductos();
+
 });
