@@ -1,30 +1,54 @@
-
 * {
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Verdana', serif;
+    background-image: url(/img/Login-Desktop.png); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
-  
+
+/* Navbar siempre visible */
+.navbar {
+    font-size: 24px;
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #000;
+}
+
 /* Estilos para dispositivos móviles */
 @media (max-width: 576px) {
+    body {
+        background-image: url(/img/Login-cel.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .navbar-brand {
+        font-size: 18px;
+    }
 
     main {
         display: flex;
         justify-content: center; 
-        align-items: center; 
+        align-items: center;
         width: 100%;
         max-width: 300px;
     }
 
     #loginForm {
-        display: flex; 
+        display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
         max-width: 247px;
-        font-size: 18px
+        font-size: 18px;
     }
 
     #loginForm input {
@@ -32,18 +56,24 @@ body {
         width: 247px;
     }
 
-    
     #loginForm button {
         text-align: center;
         display: block;
-        
     }
 }
-  
+
 /* Estilos para tabletas */
 @media (min-width: 577px) and (max-width: 768px) {
     body {
         font-size: 18px;
+        background-image: url(/img/Login-tablet.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .navbar-brand {
+        font-size: 20px;
     }
 
     #loginForm {
@@ -75,6 +105,10 @@ body {
         font-size: 18px;
     }
 
+    .navbar-brand {
+        font-size: 24px;
+    }
+
     #loginForm {
         max-width: 613px;
     }
@@ -96,4 +130,3 @@ body {
         font-size: 24px;
     }
 }
-  

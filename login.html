@@ -2,11 +2,11 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
@@ -19,17 +19,24 @@
 </head>
 
 <body>
-  
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">eMercado</a>
+    </div>
+  </nav>
+
   <main class="container mt-5 d-flex justify-content-center">
     <div class="row justify-content-center">
       <div>
         <form id="loginForm">
           <div class="mb-3">
-            <label for="username" class="form-label"> Ingrese su nombre de usuario: </label>
+            <label for="username" class="form-label">Ingrese su nombre de usuario:</label>
             <input type="text" class="form-control" id="username" required>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label"> Ingrese su contraseña:</label>
+            <label for="password" class="form-label">Ingrese su contraseña:</label>
             <input type="password" class="form-control" id="password" required>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
@@ -38,6 +45,7 @@
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="text-muted mt-5">
     <div class="container">
       <br>
@@ -64,8 +72,10 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/login.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
