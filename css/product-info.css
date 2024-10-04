@@ -70,10 +70,6 @@
     width: 100%;
   }
 
-  /* #seccion-botones div {
-    margin: 0;
-    padding: 0;
-  } */
   .btn-primary {
     background-color: black; 
     border-color: black;
@@ -94,8 +90,6 @@
   #btn-add-to-cart {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    /* padding-left: 0;
-    margin-left: 0; */
     }
 
   
@@ -124,6 +118,26 @@
       font-weight: 500;
 }
   
+/* Ajuste del contenedor de comentarios*/
+
+#commentsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#comments-section{
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Ajustes para las tarjetas de comentarios */
+.comentario {
+  flex: 1 1 100%; 
+  margin: 10px; 
+  box-sizing: border-box;
+}  
 
 /* Estilos de la sección 'Te puede interesar' */
     #related-products .card-title,
@@ -143,6 +157,87 @@
     #related-products .product-rating p {
         display: inline;
       }
+
+      /* Sección de calificaciones */
+ .rating-star {
+  background: rgb(240, 240, 241);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  width: all;
+  margin: 0 auto; 
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.rating-star h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+.rating-star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.star-icon {
+  display: center;
+  gap: 5px;
+}
+
+.star-input {
+  display: none; 
+}
+
+/*HOVER Y COLOR DE ESTRELLAS*/
+
+.star-icon label {
+  font-size: 25px;
+  cursor: pointer;
+  color: yellow; /* Color base de las estrellas sin seleccionar */
+}
+
+/* Efecto hover sobre las estrellas */
+.star-icon label:hover,
+.star-icon label:hover ~ label {
+  color: rgb(212, 212, 219); /* Cambia el color de la estrella seleccionada y las anteriores */
+}
+
+/* Estrellas seleccionadas y las anteriores a la seleccionada */
+.star-icon input:checked + label,
+.star-icon input:checked + label ~ label {
+  color: rgb(212, 212, 219); /* Cambia el color de las estrellas seleccionadas y las anteriores */
+}
+
+.star-icon label:hover,
+.star-icon input:checked+ label{
+  color: yellow;
+}  
+
+/* Texto adicional */
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+#send-review-btn {
+  padding: 10px 20px;
+  background-color: #007bff; /* Botón azul */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
     /* Ajustes para pantallas grandes (mayores a 768px) */
     @media (min-width: 769px) {
