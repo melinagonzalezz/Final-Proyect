@@ -124,6 +124,27 @@
       font-weight: 500;
 }
   
+/* Ajuste del contenedor de comentarios*/
+
+#commentsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#comments-section{
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Ajustes para las tarjetas de comentarios */
+.comentario {
+  flex: 1 1 100%; 
+  margin: 10px; 
+  box-sizing: border-box;
+}  
+
 
 /* Estilos de la sección 'Te puede interesar' */
     #related-products .card-title,
