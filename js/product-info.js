@@ -237,25 +237,7 @@ function setupFavoriteButton() {
         console.log("Estado del botón de favorito cambiado.");
     });
 }
-//Toma los comentarios de un producto relacionado desde una URL y actualiza la UI con la puntuación promedio.
-function fetchProductCommentsForRelated(productId) {
-    const commentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
 
-    fetch(commentsUrl)
-        .then(response => response.json())
-        .then(comments => {
-            const starsElement = document.getElementById(`rating-${productId}`);
-            if (comments.length > 0) {
-                const totalScore = comments.reduce((sum, comment) => sum + comment.score, 0);
-                const averageScore = (totalScore / comments.length).toFixed(1);
-                const stars = createStars(averageScore);
-                starsElement.innerHTML = `${stars} (${averageScore})`; 
-            } else {
-                starsElement.innerHTML = `${createStars(0)} (0.0)`;
-            }
-        })
-        .catch(error => console.error(`Error al cargar los comentarios del producto ${productId}:`, error));
-}
 // Obtener la calificación seleccionada
 function selectedRating() {
     const starInputs = document.querySelectorAll('.star-input');

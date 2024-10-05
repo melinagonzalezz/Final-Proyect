@@ -174,5 +174,3 @@ function buscarEnProductos(e){
     loadProducts();
     setupViewButtons();
     buscarEnProductos();
-
-});
