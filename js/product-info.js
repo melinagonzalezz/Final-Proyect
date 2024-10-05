@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const url = `https://japceibal.github.io/emercado-api/cats_products/${category}.json`;
     
     fetchProductData(url, productId);
+    setupScrollButtons();
 });
 //Toma los datos del producto desde la URL proporcionada.
 function fetchProductData(url, productId) {
@@ -29,6 +30,7 @@ function fetchProductData(url, productId) {
 
             displayProductInfo(product, data.products);
             setupThumbnails(product.images);
+            setupRelatedProducts(productId);
         })
         .catch(error => console.error('Error al cargar los datos del producto:', error));
 }
@@ -237,7 +239,104 @@ function setupFavoriteButton() {
         console.log("Estado del botón de favorito cambiado.");
     });
 }
+//Toma los comentarios de un producto relacionado desde una URL y actualiza la UI con la puntuación promedio.
+function fetchProductCommentsForRelated(productId) {
+    const commentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
 
+    fetch(commentsUrl)
+        .then(response => response.json())
+        .then(comments => {
+            const starsElement = document.getElementById(`rating-${productId}`);
+            if (comments.length > 0) {
+                const totalScore = comments.reduce((sum, comment) => sum + comment.score, 0);
+                const averageScore = (totalScore / comments.length).toFixed(1);
+                const stars = createStars(averageScore);
+                starsElement.innerHTML = `${stars} (${averageScore})`; 
+            } else {
+                starsElement.innerHTML = `${createStars(0)} (0.0)`;
+            }
+        })
+        .catch(error => console.error(`Error al cargar los comentarios del producto ${productId}:`, error));
+}
+// Muestra productos relacionados.
+function setupRelatedProducts(productId) {
+    const relatedProductsContainer = document.getElementById('related-products');
+    relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor de productos relacionados
+
+    // URL del producto seleccionado para obtener productos relacionados.
+    const productUrl = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
+
+    fetch(productUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error al cargar los datos del producto: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Datos del producto:', data); // Verificar la estructura del producto
+            const relatedProducts = data.relatedProducts; // Array de productos relacionados
+
+            // Verificar si hay productos relacionados
+            if (!relatedProducts || relatedProducts.length === 0) {
+                console.log("No hay productos relacionados disponibles.");
+                return;
+            }
+
+            // Recorrer los productos relacionados y crear las tarjetas correspondientes
+            relatedProducts.forEach(relatedProduct => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('col', 'product-card', 'mr-3');
+
+                productCard.innerHTML = `
+                    <div class="card" style="width: 18rem;">
+                        <img src="${relatedProduct.image}" class="card-img-top" alt="${relatedProduct.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${relatedProduct.name}</h5>
+                            <p id="rating-${relatedProduct.id}" class="card-text">Cargando calificación...</p>
+                        </div>
+                    </div>
+                `;
+
+                // Añadir la tarjeta al contenedor de productos relacionados
+                relatedProductsContainer.appendChild(productCard);
+
+                // Agregar funcionalidad para mostrar detalles del producto relacionado al hacer clic
+                productCard.addEventListener('click', function () {
+                    console.log(`Cambiando a producto: ${relatedProduct.name}`);
+                    displayProductInfo(relatedProduct, []); // Mostrar el producto relacionado
+                });
+
+                // Cargar los comentarios del producto relacionado y mostrar su calificación
+                fetchProductCommentsForRelated(relatedProduct.id);
+            });
+        })
+        .catch(error => console.error('Error al cargar los productos relacionados:', error));
+}
+//Configura botones para desplazarse en los productos relacionados.
+function setupScrollButtons() {
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const relatedProductsContainer = document.getElementById('related-products');
+
+    nextBtn.addEventListener('click', function() {
+        const cardWidth = relatedProductsContainer.querySelector('.card').offsetWidth;
+        relatedProductsContainer.scrollBy({
+            left: cardWidth, 
+            behavior: 'smooth' 
+        });
+        console.log("Desplazamiento a la derecha.");
+    });
+    
+    prevBtn.addEventListener('click', function() {
+        const cardWidth = relatedProductsContainer.querySelector('.card').offsetWidth;
+        relatedProductsContainer.scrollBy({
+            left: -cardWidth, 
+            behavior: 'smooth'
+        });
+        console.log("Desplazamiento a la izquierda.");
+    });
+}
 // Obtener la calificación seleccionada
 function selectedRating() {
     const starInputs = document.querySelectorAll('.star-input');
@@ -258,6 +357,76 @@ function selectedRating() {
     });
 
     return selectedValue;
+}
+//Add Review
+document.addEventListener('DOMContentLoaded', function () {
+    // Agregar el evento de envío del formulario
+    document.getElementById('review-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío del formulario por defecto
+        
+         // Obtener el valor seleccionado del input de estrella
+         const starRating = document.querySelector('input[name="star"]:checked');
+         if (!starRating) {
+            alert("Por favor selecciona una calificación de estrellas.");
+            return;
+        }
+        const ratingValue = starRating.value; 
+        console.log("Estrella seleccionada: ", ratingValue);
+
+        // Obtener el comentario
+        const commentText = document.getElementById('cmt');
+        const trimmedComment = commentText.value.trim();
+        if (!trimmedComment) {
+            alert("Por favor, escribe un comentario."); 
+            return; 
+        }
+
+        console.log("Calificación enviada:", ratingValue);
+        console.log("Comentario enviado:", trimmedComment);
+
+        // Obtener el nombre de usuario
+        const usernameInput = localStorage.getItem('currentUsername');
+
+        const newComment = {
+            user: usernameInput || "Usuario desconocido", 
+            description: trimmedComment,
+            score: ratingValue,
+            dateTime: new Date().toLocaleString(),
+        };
+
+        // Añadir el nuevo comentario a la interfaz
+        addCommentToDOM(newComment);
+        document.getElementById('review-form').reset(); 
+
+    });
+});
+// Añadir el comentario al DOM (la sección de comentarios)
+function addCommentToDOM(newComment) {
+    
+    const commentsSection = document.getElementById('comments-section'); 
+    const commentElement = document.createElement('div');
+    commentElement.classList.add('comentario', 'card', 'mb-4', 'col-12', 'col-sm-6', 'col-md-4');
+
+    commentElement.innerHTML = `
+
+        <div class="card-body ">
+                <div class="fila_nombre mb-2">
+                    <div>
+                        <span class="fw-bold">${newComment.user}</span>
+                        <span class="text-muted small">(${newComment.user})</span>
+                    </div>
+                    <div class="text-muted small">${newComment.dateTime}</div>
+                    <div>
+                        <span class="text-warning">${createStars(newComment.score)}</span>
+                        <span class="text-muted">(${newComment.score})</span>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <p class="">${newComment.description}</p>
+                </div>
+            </div>
+    `;
+    commentsSection.appendChild(commentElement); 
 }
 // Mostrar el nombre del usuario
 document.addEventListener('DOMContentLoaded', function () {
