@@ -107,10 +107,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         function switchToGridView() {
             productList.classList.add('grid-view');
+            gridViewButton.classList.add('active');
+            listViewButton.classList.remove('active');
         }
 
         function switchToListView() {
             productList.classList.remove('grid-view');
+            listViewButton.classList.add('active');
+            gridViewButton.classList.remove('active');
         }
 
         if (gridViewButton && listViewButton) {
@@ -161,3 +165,12 @@ document.addEventListener("DOMContentLoaded", function() {
     setupViewButtons();
 });
 
+// Mostrar el nombre del usuario
+document.addEventListener('DOMContentLoaded', function () {
+
+    const userName = localStorage.getItem('currentUsername');
+
+    //Mostrar nombre de usuario al iniciar sesión
+    const usernameDisplay = document.getElementById ('username-display');
+    usernameDisplay.textContent = userName;
+});

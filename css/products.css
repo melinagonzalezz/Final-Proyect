@@ -1,10 +1,15 @@
 /* Estilos del navbar y menú hamburguesa */
+
 #nav-1, #nav-2  {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: black;
     padding: 10px;
+}
+
+#nav-2 {
+    background-color: black;
 }
 
 #nav-1 ul, #nav-2 ul {
@@ -137,6 +142,24 @@
     margin-top: 10px;
 }
 
+/* BOTON ACTIVO */
+#grid-view,#list-view {
+    background-color: grey;
+    color: white;
+    border: none;
+    box-shadow: none;
+}
+
+#grid-view.active, #list-view.active{
+    background-color: #0d6efd;
+    box-shadow: none;
+}
+
+#grid-view:hover, #list-view:hover {
+    background-color: black;
+}
+
+
 
 /* Estilos para celulares */
 
@@ -144,7 +167,7 @@
     #nav-1, #nav-2 {
         flex-direction: column;
         width: 100%;
-        background-color: #333;
+        /* background-color: #333; */
     }
 
     #nav-1 ul li, #nav-2 ul li {
@@ -254,7 +277,7 @@
     #nav-1, #nav-2 {
         flex-direction: column;
         width: 100%;
-        background-color: #333;
+        /* background-color: #333; */
     }
 
     #nav-1 ul li, #nav-2 ul li {
@@ -343,16 +366,13 @@
         flex-grow: 1;
     }
 
-    .product-content h2 {
+    .product-content h2,
+    .product-price {
         font-size: 1.25rem;
     }
 
     .product-content p {
         font-size: 1rem;
-    }
-
-    .product-price {
-        font-size: 1.25rem;
     }
 
     .product-sold {
@@ -368,3 +388,4 @@
         height: 200px;
     }
 }
+

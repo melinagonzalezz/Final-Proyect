@@ -38,4 +38,24 @@ let getJSONData = function(url){
         hideSpinner();
         return result;
     });
-}
+};
+
+// Modo dia y noche
+let modoNoche = localStorage.getItem('modoNoche') === 'true';
+
+        function aplicarModo() {
+            document.body.className = modoNoche ? 'modo-noche' : 'modo-dia';
+            document.getElementById('boton').innerHTML = modoNoche ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
+        }
+
+        function cambiarModo() {
+            modoNoche = !modoNoche;
+            localStorage.setItem('modoNoche', modoNoche);
+            aplicarModo();
+        }
+
+        // Agrega el evento al botón
+        document.getElementById('boton').addEventListener('click', cambiarModo);
+
+        // Aplica el modo al cargar la página
+        aplicarModo();

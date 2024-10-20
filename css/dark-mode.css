@@ -1,0 +1,121 @@
+/* Estilos Generales */
+:root {
+    --bg-color: #272727;
+    --text-color: white;
+    --primary-color: #333;
+    --secondary-color: #222; 
+    --tertiary-color: #555;
+  }
+
+/* Estilos generales para modo noche */
+body.modo-noche {
+    background-color: var(--bg-color);
+    color: white;
+}
+
+/* Elementos comunes */
+/* Cambiar texto a blanco */
+body.modo-noche,
+body.modo-noche h1, 
+body.modo-noche h2, 
+body.modo-noche p, 
+body.modo-noche .product-price, 
+body.modo-noche .product-name, 
+body.modo-noche #vendedor-tab, 
+body.modo-noche #envio-tab, 
+body.modo-noche #reseñas-tab, 
+body.modo-noche #descripcion-tab, 
+body.modo-noche #price, 
+body.modo-noche #related-products .card-title, 
+body.modo-noche #related-products .card-text,
+body.modo-noche label,
+body.modo-noche .sidebar ul li a,
+body.modo-noche #mis-compras table,
+body.modo-noche .card_title a {
+    color: var(--text-color);
+}
+
+/* Botones en modo noche */
+body.modo-noche button,
+body.modo-noche #clear-filter,
+body.modo-noche button[type="submit"],
+body.modo-noche .profile-picture button {
+    color: white;
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+body.modo-noche button:hover,
+body.modo-noche button[type="submit"]:hover,
+body.modo-noche .profile-picture button:hover,
+body.modo-noche #mis-compras table th td:hover {
+    background-color: var(--primary-color);
+}
+
+
+/* Inputs y controles de formulario */
+body.modo-noche input, 
+body.modo-noche .form-control,
+body.modo-noche .form-select, 
+body.modo-noche #sort-options, 
+body.modo-noche .input-group input {
+    background-color: var(--secondary-color);
+    color: white;
+    border: 1px solid #111;
+}
+
+
+/* Elementos con fondo en modo noche */
+body.modo-noche .more,
+body.modo-noche .profile-content,
+body.modo-noche .directions,
+body.modo-noche .sidebar {
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+}
+
+body.modo-noche .more:hover {
+    background-color: var(--primary-color);
+    border: 2px solid #444;
+}
+
+/* Categorías y filtros */
+body.modo-noche #rangeFilterCount,
+body.modo-noche #clearRangeFilter,
+body.modo-noche #rangeFilterCountMin,
+body.modo-noche #rangeFilterCountMax,
+body.modo-noche .btn-group>.btn-light  {
+    background-color: var(--tertiary-color);
+    border: 2px solid #666;
+    color: var(--text-color);
+}
+
+body.modo-noche #address-list li {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid #111;
+}
+
+body.modo-noche .list-group-item, 
+body.modo-noche .profile-picture-container,
+body.modo-noche .product-item,
+body.modo-noche .card,
+body.modo-noche .rating-star, 
+body.modo-noche .album {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+body.modo-noche #mis-compras {
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+}
+body.modo-noche .navbar.navbar-light.bg-light {
+    background-color: #333 !important; 
+    border-bottom: 2px solid #666 !important; 
+}
+
+body.modo-noche .navbar.navbar-light.bg-light .nav-link {
+    color: var(--text-color)!important;
+}
+
