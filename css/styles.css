@@ -1,3 +1,4 @@
+
 .jumbotron,
 .card-body,
 .container,
@@ -242,7 +243,6 @@ background-color: #4169E1;
   background-color: #343a40; 
 }
 
-
 .navbar-nav {
   margin-left: auto; 
 }
@@ -258,6 +258,22 @@ background-color: #4169E1;
 #logoutButton {
   margin-left: 10px;
 }
+
+#boton {
+  border: none;
+  margin-top: 8px;
+  } 
+  
+  #infoP {
+  width: 400px;
+  height: 800px;
+  padding: 20px;
+  border-radius: 10px;
+  }
+
+  .more {
+    border: none;
+  }
 
 /* Estilos de la barra de navegación en pantallas pequeñas */
 @media (max-width: 992px) {

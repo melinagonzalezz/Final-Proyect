@@ -1,4 +1,5 @@
 /* Estilo general */
+
 * {
   box-sizing: border-box;
 }
@@ -270,7 +271,6 @@ cursor: pointer;
 .comentario {
   flex: 1 1 48%;
 }
-}
 
 /* Pantallas pequeñas (menos de 500px) */
 @media (max-width: 500px) {
@@ -315,7 +315,4 @@ cursor: pointer;
 .comentario {
   flex: 1 1 100%; 
 }
-}
-
-
 

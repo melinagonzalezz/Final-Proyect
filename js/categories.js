@@ -141,5 +141,15 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
         
     });
-     
 });
+
+// Mostrar el nombre del usuario
+document.addEventListener('DOMContentLoaded', function () {
+
+    const userName = localStorage.getItem('currentUsername');
+
+    //Mostrar nombre de usuario al iniciar sesión
+    const usernameDisplay = document.getElementById ('username-display');
+    usernameDisplay.textContent = userName;
+});
+
