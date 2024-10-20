@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="css/dark-mode.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/footer.css" rel="stylesheet">
+  <link href="css/my-purchases.css" rel="stylesheet">
+  <link href="css/my-profile.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <!-- Botón del menú hamburguesa -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="modo-dia">
+            <button id="boton"> <i class="bi bi-sun-fill"></i> </button>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="profile-page">
+      <!-- Menú lateral -->
+      <nav class="sidebar">
+        <h2> Mi perfil</h2>
+        <ul>
+            <li> <a href="my-profile.html"> Panel de control de mi cuenta </a> </li>
+            <li> <a href="my-purchases.html"> Mis compras </a> </li>
+            <li> <a href="info-cuenta.html"> Información de mi cuenta </a> </li>
+        </ul>
+      </nav>
+
+      <!-- Mis Compras Section -->
+      <section id="mis-compras" class="section-content">
+        <h2>Mis Compras</h2>
+        <table class="table ttable-stripped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">N° Compra</th>
+              <th scope="col">Pago</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Fecha del pedido</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Datos de compras se insertarán aquí -->
+            <tr>
+              <td>03</td>
+              <td>$XXX</td>
+              <td>Calle Falsa 123, Ciudad Ejemplo</td>
+              <td>01 - Oct - 2024</td>
+              <td>Pendiente</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>$XXX</td>
+              <td>Calle Falsa 123, Ciudad Ejemplo</td>
+              <td>13 - Jun - 2024</td>
+              <td>Entregado</td>
+            </tr>
+            <tr>
+              <td>01</td>
+              <td>$XXX</td>
+              <td>Calle Falsa 123, Ciudad Ejemplo</td>
+              <td>24 - Ene - 2024</td>
+              <td>Entregado</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h2>Devoluciones</h2>
+        <table class="table ttable-stripped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">N° Devolución</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Recibido</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Reembolso</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!-- Datos de devoluciones se insertarán aquí -->
+              <tr>
+                <td>03</td>
+                <td>01 - May - 2003</td>
+                <td>Recibido</td>
+                <td>Aceptado</td>
+                <td>Pendiente</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>25 - Jun - 2008</td>
+                <td>Pendiente</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>01</td>
+                <td>16 - Nov - 2030</td>
+                <td>Pendiente</td>
+                <td>Rechazado</td>
+                <td>-</td>
+              </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <footer class="text-muted">
+    <div class="container">
+      <br>
+      <nav>
+        <ul>
+          <li><a href="#">Políticas de la empresa</a></li>
+          <br>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <br>
+          <li><a href="#">Contáctanos</a></li>
+          <br>
+          <li><a href="#">Métodos de pago</a></li>
+          <br>
+        </ul>
+      </nav>
+      <br>
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    </div>
+  </footer>
+
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/my-profile.js"></script>
+</body>
+
+</html>

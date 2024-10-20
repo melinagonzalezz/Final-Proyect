@@ -30,7 +30,6 @@ function fetchProductData(url, productId) {
 
             displayProductInfo(product, data.products);
             setupThumbnails(product.images);
-            setupRelatedProducts(productId);
         })
         .catch(error => console.error('Error al cargar los datos del producto:', error));
 }
@@ -119,6 +118,10 @@ function displayProductInfo(product, allProducts) {
     } else {
         console.error("Elemento descripcion no encontrado");
     }
+    
+    const relatedProductsContainer = document.getElementById('related-products');
+    relatedProductsContainer.innerHTML = ''; 
+    setupRelatedProducts(product.id);
 
 }
 //Toma los comentarios del producto principal.
@@ -263,7 +266,6 @@ function setupRelatedProducts(productId) {
     const relatedProductsContainer = document.getElementById('related-products');
     relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor de productos relacionados
 
-    // URL del producto seleccionado para obtener productos relacionados.
     const productUrl = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
 
     fetch(productUrl)
@@ -274,16 +276,13 @@ function setupRelatedProducts(productId) {
             return response.json();
         })
         .then(data => {
-            console.log('Datos del producto:', data); // Verificar la estructura del producto
-            const relatedProducts = data.relatedProducts; // Array de productos relacionados
+            const relatedProducts = data.relatedProducts;
 
-            // Verificar si hay productos relacionados
             if (!relatedProducts || relatedProducts.length === 0) {
                 console.log("No hay productos relacionados disponibles.");
                 return;
             }
 
-            // Recorrer los productos relacionados y crear las tarjetas correspondientes
             relatedProducts.forEach(relatedProduct => {
                 const productCard = document.createElement('div');
                 productCard.classList.add('col', 'product-card', 'mr-3');
@@ -298,21 +297,28 @@ function setupRelatedProducts(productId) {
                     </div>
                 `;
 
-                // Añadir la tarjeta al contenedor de productos relacionados
                 relatedProductsContainer.appendChild(productCard);
 
-                // Agregar funcionalidad para mostrar detalles del producto relacionado al hacer clic
                 productCard.addEventListener('click', function () {
-                    console.log(`Cambiando a producto: ${relatedProduct.name}`);
-                    displayProductInfo(relatedProduct, []); // Mostrar el producto relacionado
+                    fetch(`https://japceibal.github.io/emercado-api/products/${relatedProduct.id}.json`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Error al cargar los detalles del producto: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(fullProduct => {
+                            displayProductInfo(fullProduct, []); // Mostrar el producto completo
+                        })
+                        .catch(error => console.error('Error al cargar el producto relacionado:', error));
                 });
 
-                // Cargar los comentarios del producto relacionado y mostrar su calificación
                 fetchProductCommentsForRelated(relatedProduct.id);
             });
         })
         .catch(error => console.error('Error al cargar los productos relacionados:', error));
 }
+
 //Configura botones para desplazarse en los productos relacionados.
 function setupScrollButtons() {
     const nextBtn = document.getElementById('nextBtn');
