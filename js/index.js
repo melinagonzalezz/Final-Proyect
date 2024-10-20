@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('currentUsername');
     
     // Si no hay usuario autenticado, redirigir a login.html
     if (!username) {
@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Manejo del botón de cerrar sesión
     const logoutButton = document.getElementById('logoutButton');
     logoutButton.addEventListener('click', function () {
-        localStorage.removeItem('username');
+      
+        localStorage.removeItem('currentUsername');
         window.location.href = 'login.html';
     });
 });
