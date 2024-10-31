@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-  
+
     loadProducts();
     setupViewButtons();
 });
@@ -174,4 +174,3 @@ document.addEventListener('DOMContentLoaded', function () {
     const usernameDisplay = document.getElementById ('username-display');
     usernameDisplay.textContent = userName;
 });
-

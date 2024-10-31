@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(236, 234, 234);
+}
+
+.courrency, .btn {
+    border-radius: 8px;
+}
+
+/* Saca las flechas dentro del input de cantidad*/
+    input [type="number"] {
+        -moz-appearance: textfield; /* Para Firefox */
+        -webkit-appearance: none;   /* Para Chrome, Safari, Edge */
+        appearance: none;           /* Para navegadores compatibles */
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; /* Opcional: elimina el margen interno en Chrome */
+    }

@@ -275,6 +275,7 @@ background-color: #4169E1;
     border: none;
   }
 
+
 /* Estilos de la barra de navegación en pantallas pequeñas */
 @media (max-width: 992px) {
   .navbar-nav {
