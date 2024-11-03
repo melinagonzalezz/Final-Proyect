@@ -261,7 +261,7 @@ background-color: #4169E1;
 
 #boton {
   border: none;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   } 
   
   #infoP {
@@ -274,6 +274,12 @@ background-color: #4169E1;
   .more {
     border: none;
   }
+
+  /* .navbar .nav-item img {
+    max-height: 5px; 
+    width: auto; 
+  } */
+
 
 /* Estilos de la barra de navegación en pantallas pequeñas */
 @media (max-width: 992px) {

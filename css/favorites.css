@@ -1,0 +1,102 @@
+:root {
+    --color-white: #ffffff;
+    --color-light-gray: #e0e0e0;
+    --color-medium-gray: #a0a0a0;
+    --color-dark-gray: #303030;
+  }
+  
+  body {
+    background-color: var(--color-white);
+    color: var(--color-dark-gray);
+  }
+  
+  h1, h2 {
+    color: var(--color-dark-gray);
+    margin-bottom: 1rem;
+  }
+  
+  #favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+
+  /* Estilo para las tarjetas de productos */
+  .product-card {
+    width: 250px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Estilos para el nombre del producto */
+  .product-card h2 {
+    font-size: 18px;
+    color: #333333;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+
+  /* Estilos para la imagen del producto */
+  .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  /* Estilos para la descripción del producto */
+    .product-card p {
+      font-size: 14px;
+      color: #555555;
+      margin: 5px 0;
+    }
+
+  /* Estilos para el precio del producto */
+  .product-card p:nth-of-type(2) {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-top: 10px;
+  }
+  
+  
+  button {
+    background-color: var(--color-dark-gray);
+    border: 1px solid var(--color-dark-white);
+    padding: 0.5rem 1rem;
+    color: var(--color-white);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  button:hover {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+  }
+  
+  footer {
+    padding: 1rem;
+    text-align: center;
+    color: var(--color-medium-gray);
+    border-top: 1px solid var(--color-light-gray);
+  }
+  
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+  }
+  

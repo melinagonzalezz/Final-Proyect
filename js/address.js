@@ -79,3 +79,42 @@ function loadAddresses() {
 }
 
 window.onload = loadAddresses;
+
+ //badge--
+ function saveToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    // verificar si ya esta
+    const cartItems = cart.some(item => item.id === product.id);
+  
+    if (!cartItems) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartBadge(); 
+    } else {
+        alert('Este producto ya se encuentra en el carrito.');
+    }
+  
+    console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
+  }
+  
+  //funcion para eliminar
+  function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    cart = cart.filter(item => item.id !== productId);
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartBadge(); 
+  }
+  
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const badge = document.getElementById('cart-badge');
+    badge.textContent = cart.length; 
+  }
+  
+  window.onload = function() {
+    updateCartBadge();
+  };
+  

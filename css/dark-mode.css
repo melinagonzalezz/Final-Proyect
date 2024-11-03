@@ -26,6 +26,9 @@ body.modo-noche #envio-tab,
 body.modo-noche #reseñas-tab, 
 body.modo-noche #descripcion-tab, 
 body.modo-noche #price, 
+body.modo-noche #debit-tab,
+body.modo-noche #credit-tab,
+body.modo-noche #pickup-tab,
 body.modo-noche #related-products .card-title, 
 body.modo-noche #related-products .card-text,
 body.modo-noche label,
@@ -110,12 +113,39 @@ body.modo-noche #mis-compras {
     background-color: var(--tertiary-color);
     color: var(--text-color);
 }
-body.modo-noche .navbar.navbar-light.bg-light {
+
+body.modo-noche .navbar.navbar-light.bg-light,
+body.modo-noche .cartList.bg-light,
+body.modo-noche .coste.bg-light {
     background-color: #333 !important; 
     border-bottom: 2px solid #666 !important; 
-}
-
-body.modo-noche .navbar.navbar-light.bg-light .nav-link {
     color: var(--text-color)!important;
 }
 
+body.modo-noche .navbar.navbar-light.bg-light .nav-link,
+body.modo-noche .text-muted {
+    color: var(--text-color)!important;
+}
+
+
+body.modo-noche .noseve {
+    background-color: white !important;
+    color: black !important;
+}
+
+body.modo-noche .card.bg-secondary,
+body.modo-noche .alert-dark,
+body.modo-noche .box  {
+    background-color: var(--tertiary-color) !important;
+    color: var(--text-color);
+}
+
+body.modo-noche #fav-list {
+    background-color: #333 !important; 
+    border-bottom: 2px solid #666 !important; 
+    color: var(--text-color)!important;
+}
+
+/* 
+body.modo-noche .alert-success,
+body.modo-noche .alert-danger */

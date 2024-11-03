@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); 
 
         const formData = {
-            nombre: document.getElementById('nombre').value,
-            segundoNombre: document.getElementById('segundoNombre').value,
-            apellido: document.getElementById('apellido').value,
-            segundoApellido: document.getElementById('segundoApellido').value,
+            nombre: document.getElementById('name').value,
+            segundoNombre: document.getElementById('secondNamee').value,
+            apellido: document.getElementById('lastname-1').value,
+            segundoApellido: document.getElementById('lastname-2').value,
             email: document.getElementById('email').value,
-            telefono: document.getElementById('telefono').value
+            telefono: document.getElementById('number').value
         };
 
         console.log('Datos guardados:', formData);
@@ -81,3 +81,42 @@ document.addEventListener('DOMContentLoaded', () => {
    // Cargar las direcciones al cargar la página
 
    window.onload = loadProfileAddresses; 
+
+    //badge--
+    function saveToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    // verificar si ya esta
+    const cartItems = cart.some(item => item.id === product.id);
+  
+    if (!cartItems) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartBadge(); 
+    } else {
+        alert('Este producto ya se encuentra en el carrito.');
+    }
+  
+    console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
+  }
+  
+  //funcion para eliminar
+  function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    cart = cart.filter(item => item.id !== productId);
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartBadge(); 
+  }
+  
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const badge = document.getElementById('cart-badge');
+    badge.textContent = cart.length; 
+  }
+  
+  window.onload = function() {
+    updateCartBadge();
+  };
+  

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchProductData(url, productId);
     setupScrollButtons();
 });
+
 //Toma los datos del producto desde la URL proporcionada.
 function fetchProductData(url, productId) {
     fetch(url)
@@ -30,6 +31,12 @@ function fetchProductData(url, productId) {
 
             displayProductInfo(product, data.products);
             setupThumbnails(product.images);
+
+            document.getElementById("favBtn").addEventListener("click", () =>  saveToFavorites(product));
+            document.getElementById("btn-add-to-cart").addEventListener("click", () =>  saveToCart(product));
+            document.getElementById("btn-buy").addEventListener("click", () =>  saveToCart(product));
+
+            
         })
         .catch(error => console.error('Error al cargar los datos del producto:', error));
 }
@@ -318,7 +325,6 @@ function setupRelatedProducts(productId) {
         })
         .catch(error => console.error('Error al cargar los productos relacionados:', error));
 }
-
 //Configura botones para desplazarse en los productos relacionados.
 function setupScrollButtons() {
     const nextBtn = document.getElementById('nextBtn');
@@ -443,3 +449,48 @@ document.addEventListener('DOMContentLoaded', function () {
     const usernameDisplay = document.getElementById ('username-display');
     usernameDisplay.textContent = userName;
 });
+
+// Redirige a cart.html al hacer clic en "Comprar"
+document.getElementById("btn-buy").addEventListener("click", function () {
+    window.location.href = "cart.html";
+});
+
+// Añade el producto al carrito al hacer clic en "Añadir al carrito"
+
+function saveToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Verifica si el producto ya está en el carrito
+    const cartItems = cart.some(item => item.id === product.id);
+
+    if (!cartItems) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Producto añadido al carrito");
+    }
+
+    console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
+}
+
+
+// Guarda el producto en favoritos y redirige a favorites.html
+function saveToFavorites(product) {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    // Verifica si el producto ya está en favoritos
+    const isFavorite = favorites.some(fav => fav.id === product.id);
+
+    if (!isFavorite) {
+        favorites.push(product);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("Producto añadido a favoritos");
+    } else {
+        alert("Este producto ya esta en favoritos.");
+    }
+
+    console.log(`Datos guardados en fav: ${JSON.stringify(favorites)}`);
+    
+    window.location.href = "favorites.html";
+}
+
+
