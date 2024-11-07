@@ -1,4 +1,4 @@
-// Function para añadir una direccion
+// Function para añadir una dirección
 function addAddress() {
     const list = document.getElementById('address-list');
     const newAddress = document.createElement('li');
@@ -6,51 +6,66 @@ function addAddress() {
     list.appendChild(newAddress);
 }
 
-// Function para editar una direccion ya añadida
+// Function para editar una dirección ya añadida
 function editAddress(element) {
-    const address = prompt('Edita la dirección:', element.parentNode.firstChild.textContent.trim());
+    const addressItem = element.parentNode;
+    const addressText = addressItem.firstChild.textContent.trim();
+    const address = prompt('Edita la dirección:', addressText);
+    
     if (address) {
-        element.parentNode.firstChild.textContent = address;
+        addressItem.firstChild.textContent = address;
+        updateLocalStorage();
     }
 }
 
-// Function para borrar una direccion
+// Function para borrar una dirección
 function deleteAddress(element) {
     if (confirm('¿Estás seguro de que quieres eliminar esta dirección?')) {
         const li = element.parentNode;
         li.parentNode.removeChild(li);
+        updateLocalStorage();
     }
 }
 
-// Function para guardar una direccion desde el formulario
+// Function para guardar una dirección desde el formulario
 function saveAddress() {
     const department = document.getElementById('department').value;
     const locality = document.getElementById('locality').value;
     const street = document.getElementById('street').value;
     const number = document.getElementById('number').value;
     const floor = document.getElementById('floor').value;
-    const phone = document.getElementById('phone').value;
-
-    if (!department || !locality || !street || !number || !phone) {
+    const isDefault = document.getElementById('default-address').checked; 
+    
+    // Validación
+    if (!department || !locality || !street || !number) {
         alert('Por favor, completa todos los campos obligatorios.');
         return;
     }
 
+    // Formato de la nueva dirección
     const newAddress = `${department}, ${locality}, ${street} ${number}, ${floor ? `Piso ${floor}` : ''}`;
     
     const list = document.getElementById('address-list');
     const li = document.createElement('li');
-    li.innerHTML = `${newAddress} <span class="edit" onclick="editAddress(this)">Editar</span> <span class="delete" onclick="deleteAddress(this)">Eliminar</span>`;
+    
+    li.innerHTML = `${newAddress} ${isDefault ? '<strong>(Predeterminada)</strong>' : ''} <span class="edit" onclick="editAddress(this)">Editar</span> <span class="delete" onclick="deleteAddress(this)">Eliminar</span>`;
     
     list.appendChild(li);
 
-    updateLocalStorage();
+    if (isDefault) {
+        const addresses = document.querySelectorAll('#address-list li');
+        addresses.forEach((item) => {
+            if (item.innerHTML.includes('(Predeterminada)') && item !== li) {
+                item.innerHTML = item.innerHTML.replace('<strong>(Predeterminada)</strong>', '');
+            }
+        });
+    }
 
+    updateLocalStorage();
     document.getElementById('address-form').reset(); 
 }
 
-//Function para guaardar en LocalStorage
-
+// Function para guardar en LocalStorage
 function updateLocalStorage() {
     const listItems = document.querySelectorAll('#address-list li');
     const addresses = [];
@@ -63,58 +78,24 @@ function updateLocalStorage() {
     localStorage.setItem('addresses', JSON.stringify(addresses));
 }
 
-//Function para cargar las direcciones desde localStorage
-
+// Function para cargar las direcciones desde localStorage
 function loadAddresses() {
     const savedAddresses = JSON.parse(localStorage.getItem('addresses')) || [];
+    
+    console.log('Direcciones recuperadas del localStorage:', savedAddresses); 
+
     const list = document.getElementById('address-list');
+    list.innerHTML = '';
 
-    savedAddresses.forEach((address) => {
+    savedAddresses.forEach((addressText) => {
         const li = document.createElement('li');
-        li.innerHTML = `${address} <span class="edit" onclick="editAddress(this)"> Editar </span>
-        <span class="delete" onclick="deleteAddress(this)"> Eliminar </span>`;
-
+        
+        const isDefault = addressText.includes('(Predeterminada)');
+        li.innerHTML = `${addressText} ${isDefault ? '<strong>(Predeterminada)</strong>' : ''} <span class="edit" onclick="editAddress(this)">Editar</span> <span class="delete" onclick="deleteAddress(this)">Eliminar</span>`;
+        
         list.appendChild(li);
     });
 }
 
-window.onload = loadAddresses;
-
- //badge--
- function saveToCart(product) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-    // verificar si ya esta
-    const cartItems = cart.some(item => item.id === product.id);
-  
-    if (!cartItems) {
-        cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartBadge(); 
-    } else {
-        alert('Este producto ya se encuentra en el carrito.');
-    }
-  
-    console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
-  }
-  
-  //funcion para eliminar
-  function removeFromCart(productId) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
-    cart = cart.filter(item => item.id !== productId);
-    
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartBadge(); 
-  }
-  
-  function updateCartBadge() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const badge = document.getElementById('cart-badge');
-    badge.textContent = cart.length; 
-  }
-  
-  window.onload = function() {
-    updateCartBadge();
-  };
-  
+// Cargar direcciones cuando la página se haya cargado
+document.addEventListener('DOMContentLoaded', loadAddresses);

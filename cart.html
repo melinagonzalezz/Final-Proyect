@@ -86,19 +86,20 @@
         <!-- Sección de costos -->
         <div class="col-lg-4 col-md-12 col-sm-12 px-4">
           <div class="coste bg-light p-4 cnt">
-            <div class="container d-flex discount">
-              <input type="text" class="form-control me-2" placeholder="Código de descuento">
-              <button class="btn btn-dark" type="submit">Aplicar</button>
+            <div class="container d-flex discount" id="discountContainer">
+              <input type="text" class="form-control me-2" placeholder="Código de descuento" id="discountInput">
+              <button class="btn btn-dark" type="submit" id="addDiscount">Aplicar</button>
             </div>
+            <div id="discountMessage"></div>
             <hr>
 
-            <div class="d-flex align-items-start">
+            <!-- <div class="d-flex align-items-start">
               <input type="checkbox" class="me-2 mt-1">
               <p class="fw-bold mb-0">
                 Acepto los términos y condiciones. <br> Autorizo a procesar mis datos personales de acuerdo al 
                 <a href="#" class="text-primary">Aviso de Privacidad</a>.
               </p>
-            </div>
+            </div> -->
 
             <br>
             
@@ -109,8 +110,8 @@
             
             <div class="container alert-dark mt-4 p-3 cnt">
               <p class="fs-5 fw-bold">Gastos de envío</p>
-              <p class="fs-6">El costo de envío dependerá del peso de el/los productos y la fragilidad del mismo</p>
-              <p class="m-1 fs-6 fw-bold">Costo base: USD $25</p>
+              <p class="fs-6">El costo dependerá del tipo envío que elija.</p>
+              <p class="m-1 fs-6 fw-bold">Gratis retirando en tienda.</p>
             </div>
 
             <form>
@@ -120,15 +121,20 @@
               <option value="UY">UY</option>
             </select>
           </form>
-            <!-- <div class="btn-group" role="group">
-              <button class= "btn btn-primary">USD</button>
-              <button>UY</button>
-            </div> -->
             
             <div class="d-flex justify-content-between bg-dark text-light mt-4 p-2 courrency">
               <p class="flex-fill mb-0">TOTAL</p>
               <p class="flex-fill mb-0" id="total">$0</p>
             </div>
+            
+            <div class="d-flex align-items-start mt-4">
+              <input type="checkbox" class="me-2 mt-1">
+              <p class="fw-bold mb-0">
+                Acepto los términos y condiciones. <br> Autorizo a procesar mis datos personales de acuerdo al 
+                <a href="#" class="text-primary">Aviso de Privacidad</a>.
+              </p>
+            </div>
+
           </div>
 
           <div>
