@@ -1,4 +1,13 @@
-// código desde github entrega 7
+// CAMBIOS PARA ENTREGA 7
+// Modificar cantidades 0 o eliminar. (vero)
+// Badge. (Marci<3)
+// Guardar total y currency en local storage con el boton Ir a checkout. (azul)
+// Hacer funcionar el descuento con aplicar. Patience Pass -10%. JapS3 -20%. JapS$ +10%. (pao) 
+//
+// En caso de tener el descuento de Patience traerlo de local Storage. (pao)
+// Agregarle funcionalidad al info-cuenta (mel)
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // Llama a la función para mostrar el carrito en la página
@@ -119,7 +128,7 @@ function updateSubTotal(){
         const priceElement = card.querySelector('.price'); 
 
         //Por las dudas para asegurarme de que cantidad solo traiga números
-        quantityInput.value = parseInt(quantityInput.value.replace(/[^0-9]/g, ''), 10); 
+        quantityInput.value = parseInt(quantityInput.value.replace(/[^0-9]/g, '')); 
 
         console.log(currency);
        
@@ -140,10 +149,7 @@ function updateSubTotal(){
     })
 
     subtotalElement.textContent = 'USD $' + subTotalValor.toFixed(2);
-
-    localStorage.setItem('cartSubtotal', subTotalValor.toFixed(2));
-    
-    updateTotal(subTotalValor);
+    updateTotal();
 }
 
 
@@ -166,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function updateTotal() {
-
+  
     const subtotalElement = document.getElementById("subTotal");
     const totalElement = document.getElementById("total");
     const selectedDiscount = JSON.parse(localStorage.getItem("selectedDiscount"))
@@ -236,8 +242,6 @@ function removeCartItem(index) {
     localStorage.setItem("cart", JSON.stringify(cartItems));
 
     displayCart(); // Actualizar la lista
-    updateSubTotal(); //Actualiza el subtotal
-    updateTotal(); // Actualiza el total
 }
 
 function discounts() {
