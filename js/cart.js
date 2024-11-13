@@ -175,34 +175,40 @@ function updateTotal() {
   
     const subtotalElement = document.getElementById("subTotal");
     const totalElement = document.getElementById("total");
-    const selectedDiscount = JSON.parse(localStorage.getItem("selectedDiscount"))
+    const selectedDiscount = JSON.parse(localStorage.getItem("selectedDiscount"));
+
+    console.log(selectedDiscount);
 
     let subTotalValue = parseFloat(subtotalElement.textContent.replace('USD $', ''));
 
     console.log("Subtotal: ", subTotalValue);
     
+    if (selectedDiscount !== "") {
+        selectedDiscount.forEach (discount => {
+        
+            if (discount === "ZEN10") {
+                subTotalValue -= subTotalValue * 0.10;
+                console.log ("Descuento ZEN10")
     
-    selectedDiscount.forEach (discount => {
-        
-        if (discount === "ZEN10") {
-            subTotalValue -= subTotalValue * 0.10;
-            console.log ("Descuento ZEN10")
+            }
+            
+            if (discount === "JAP285S3") {
+                subTotalValue -= subTotalValue * 0.20;
+                console.log("Descuento Guay aplicado")
+            } 
+            
+            if (discount.startsWith("JAP285S") && discount.length === 8 && discount[7] !== "3") {
+                subTotalValue += subTotalValue * 0.15;
+                console.log("Aumento por equivocacion")
+            }
+            
+        })
+    } else {
+        console.log("JSJSJS No tenes descuentos");
+    }
+    
 
-        }
-        
-        if (discount === "JAP285S3") {
-            subTotalValue -= subTotalValue * 0.20;
-            console.log("Descuento Guay aplicado")
-        } 
-        
-        if (discount.startsWith("JAP285S") && discount.length === 8 && discount[7] !== "3") {
-            subTotalValue += subTotalValue * 0.15;
-            console.log("Aumento por equivocacion")
-        }
-        
-    })
-
-    let totalValue = subTotalValue; 
+    let totalValue = subTotalValue; //Actualiza monto 
 
     console.log("Total: ", totalValue);
 
