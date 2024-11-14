@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Llama a la función para mostrar el carrito en la página
     displayCart();
-
 });
 
 //Verificar si se guardo algo en el carrito
@@ -114,15 +113,12 @@ function displayCart () {
     updateSubTotal(); 
 }}
 
-
 function updateSubTotal(){
+    
     const subtotalElement = document.getElementById("subTotal");
     let subTotalValor = 0;
 
-    let cards = document.querySelectorAll(".card-body")
-
-    cards.forEach(card => {
-
+    document.querySelectorAll(".card-body").forEach(card => {
         const quantityInput = card.querySelector('.quantity-input');
         const currency = card.querySelector('.currency').textContent.trim();
         const priceElement = card.querySelector('.price'); 
@@ -133,17 +129,12 @@ function updateSubTotal(){
         console.log(currency);
        
         if (currency === "USD") {
-            
             subTotalValor += quantityInput.value * parseFloat(priceElement.textContent);
-            
             console.log(`Moneda: ${currency}, Precio: ${priceElement.textContent}, Cantidad: ${quantityInput.value}`);
 
         } else {
-            
             subTotalValor += quantityInput.value * parseFloat(priceElement.textContent) / 42;
-            
             console.log(`Moneda: ${currency}, Precio: ${priceElement.textContent}, Cantidad: ${quantityInput.value}`);
-            
         }
 
     })
@@ -152,102 +143,58 @@ function updateSubTotal(){
     updateTotal();
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    const currencySelect = document.getElementById('currencySelect');
-
-    // Toma el valor guardado en localStorage
-    const savedCurrency = localStorage.getItem('selectedCurrency');
-    if (savedCurrency) {
-        currencySelect.value = savedCurrency;
-    }
-
-    // Si cambias la seleccion actual
-    currencySelect.addEventListener('change', function () {
-        localStorage.setItem('selectedCurrency', this.value);
-        updateTotal(); // Actualiza el total 
-    });
-
-    updateTotal(); 
-});
-
 function updateTotal() {
   
     const subtotalElement = document.getElementById("subTotal");
     const totalElement = document.getElementById("total");
-    const selectedDiscount = JSON.parse(localStorage.getItem("selectedDiscount"));
-
-    console.log(selectedDiscount);
+    
+    // Obtener el descuento seleccionado
+    let selectedDiscount = JSON.parse(localStorage.getItem("selectedDiscount"));
+    console.log("selectedDiscount recuperado:", selectedDiscount);
 
     let subTotalValue = parseFloat(subtotalElement.textContent.replace('USD $', ''));
-
     console.log("Subtotal: ", subTotalValue);
     
-    if (selectedDiscount !== "") {
+    if (selectedDiscount.length > 0) {
         selectedDiscount.forEach (discount => {
         
             if (discount === "ZEN10") {
                 subTotalValue -= subTotalValue * 0.10;
-                console.log ("Descuento ZEN10")
-    
+                console.log ("Descuento ZEN10 aplicado");
             }
             
             if (discount === "JAP285S3") {
                 subTotalValue -= subTotalValue * 0.20;
-                console.log("Descuento Guay aplicado")
+                console.log("Descuento Guay aplicado");
             } 
             
             if (discount.startsWith("JAP285S") && discount.length === 8 && discount[7] !== "3") {
                 subTotalValue += subTotalValue * 0.15;
-                console.log("Aumento por equivocacion")
+                console.log("Aumento por equivocacion");
             }
             
-        })
+        });
     } else {
-        console.log("JSJSJS No tenes descuentos");
+        console.log("JA No tenes descuentos");
     }
     
-
-    let totalValue = subTotalValue; //Actualiza monto 
-
+    //Actualiza monto total
+    let totalValue = subTotalValue; 
     console.log("Total: ", totalValue);
 
     // Convertir el total según la moneda seleccionada
     const currencySelected = document.getElementById('currencySelect').value;
-    
     console.log("Moneda seleccionada: " + currencySelected);
 
-    if (!currencySelected) {
-        console.error("No se ha seleccionado una moneda.");
-        return; 
-    }
-
     if (currencySelected === "US") {
+        // Si se selecciona USD, el valor permanece igual
         totalElement.textContent = 'Total: $' + totalValue.toFixed(2); 
     } else if (currencySelected === "UY") {
+        // Si se selecciona UY, convierte a pesos uruguayos
         totalElement.textContent = 'Total: $' + (totalValue * 42).toFixed(2); 
     } else {
         totalElement.textContent = 'Error: Moneda no reconocida';
     }
-}
-
-
- // Función para guardar el ID y redirigir a la página de detalles
- function saveProductId(id, category) {
-    const queryString = `?id=${id}&category=${category}`;
-    window.location.href = `product-info.html${queryString}`;
-}
-
-// Función para eliminar un producto del carrito
-function removeCartItem(index) {
-    
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
-    cartItems.splice(index, 1); // Eliminar el producto del array
-
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-
-    displayCart(); // Actualizar la lista
 }
 
 function discounts() {
@@ -274,22 +221,77 @@ function discounts() {
         selectedDiscount.push("ZEN10");
         localStorage.setItem("selectedDiscount", JSON.stringify(selectedDiscount));  // Guarda en localStorage
         discountMessage.innerHTML = `<p>¡Descuento ZEN10 aplicado!</p>`;
+        console.log("Descuento ZEN10 guardado", JSON.stringify(selectedDiscount));
 
-    } else if (discountInput === "JAP285S3"  && !discountInput.includes("ZEN10")) {
+    } else if (discountInput === "JAP285S3"  && !selectedDiscount.includes("ZEN10")) {
         //Acumulable con otros pero se puede usar uno a la vez
         selectedDiscount.push("JAP285S3");
         localStorage.setItem("selectedDiscount", JSON.stringify(selectedDiscount));  // Guarda en localStorage
         discountMessage.innerHTML = `<p>¡Descuento JAP285S3 aplicado!</p>`;
+        console.log("Descuento JAP285S3 guardado", JSON.stringify(selectedDiscount));
 
     } else if (discountInput.startsWith("JAP285S") && discountInput.length === 8 && discountInput[7] !== "3") {
-        
+        //Si se ingresa un numero de grupo diferente al nuestro
         selectedDiscount.push("MalaJugada");
         localStorage.setItem("selectedDiscount", JSON.stringify(selectedDiscount));  // Guarda en localStorage
         discountMessage.innerHTML = `<p>¡Se te añadido un interes de 15% por equivocarte de grupo!</p>`;
+        console.log("Falso Descuento MalaJugada guardado", JSON.stringify(selectedDiscount));
+
     } else {
         // Si el código no es válido
         discountMessage.innerHTML = `<p>¡Código de descuento no válido!</p>`;
     }
+
+    updateTotal()
+    showDiscountCard(discountInput)
+}
+
+function showDiscountCard(discountInput) {
+    const discountCard = document.getElementById("discountCards");
+    discountCard.innerHTML = `
+        <div class="d-flex justify-content-between bg-dark text-light p-2 courrency">
+            <p class="flex-fill mb-0">SUBTOTAL</p>
+            <p id="subTotal" class="flex-fill mb-0">$0</p>
+        </div>
+    
+    Descuento: $ -${discountAmount.toFixed(2)} (${discountInput}%)`;
+
 }
 
 document.getElementById("addDiscount").addEventListener("click", discounts);
+
+document.addEventListener('DOMContentLoaded', function () {
+    const currencySelect = document.getElementById('currencySelect');
+
+    // Toma el valor guardado en localStorage
+    const savedCurrency = localStorage.getItem('selectedCurrency');
+    if (savedCurrency) {
+        currencySelect.value = savedCurrency;
+    }
+
+    // Si cambias la seleccion actual
+    currencySelect.addEventListener('change', function () {
+        localStorage.setItem('selectedCurrency', this.value);
+        updateTotal(); // Actualiza el total 
+    });
+
+    updateTotal(); 
+});
+
+// Función para guardar el ID y redirigir a la página de detalles
+function saveProductId(id, category) {
+    const queryString = `?id=${id}&category=${category}`;
+    window.location.href = `product-info.html${queryString}`;
+}
+
+// Función para eliminar un producto del carrito
+function removeCartItem(index) {
+    
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cartItems.splice(index, 1); // Eliminar el producto del array
+
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+
+    displayCart(); // Actualizar la lista
+}
