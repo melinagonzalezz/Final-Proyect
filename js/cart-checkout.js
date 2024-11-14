@@ -109,6 +109,72 @@ function changeSection(sectionToHide, sectionToShow) {
     document.getElementById(sectionToShow).classList.remove('d-none');
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Recuperar botones y agregar evento de selección
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Eliminar la clase 'selected' de todos los botones
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            // Añadir la clase 'selected' al botón clickeado
+            button.classList.add('selected');
+            
+            // Cambiar la visibilidad de las direcciones según la opción seleccionada
+            if (button.textContent === "Retiro en tienda") {
+                showPickupLocations();
+            } else {
+                showAddressFromStorage();
+            }
+        });
+    });
+
+    // Mostrar las opciones de retiro en tienda al cargar la página
+
+    showPickupLocations(); // Llamar a esta función para mostrar las opciones de "Retiro en tienda" por defecto
+
+    // Mostrar direcciones falsas para la opción de "Retiro en tienda"
+
+    function showPickupLocations() {
+        const addressList = document.getElementById('address-list');
+        addressList.innerHTML = `
+            <p><i class="bi bi-house-fill"></i> Falsa Tienda 1, Calle 123</p>
+            <p><i class="bi bi-house-fill"></i> Falsa Tienda 2, Calle 456</p>
+            <p><i class="bi bi-house-fill"></i> Falsa Tienda 3, Calle 789</p>
+        `;
+        // Ocultar boton
+        document.getElementById('edit-address-btn').style.display = 'none';
+    }
+
+    // Mostrar dirección predeterminada desde localStorage
+    function showAddressFromStorage() {
+        const addressList = document.getElementById('address-list');
+        const savedAddress = localStorage.getItem('addresses');
+        
+        if (savedAddress) {
+            // Parsear la dirección desde JSON
+            const addressData = JSON.parse(savedAddress);
+            
+            // Buscar la dirección predeterminada
+            const defaultAddress = addressData.find(address => address.isDefault);
+            
+            if (defaultAddress) {
+                addressList.innerHTML = `<p><i class="bi bi-house-fill"></i> ${defaultAddress.addressText}</p>`;
+            } else {
+                addressList.innerHTML = `<p><i class="bi bi-house-fill"></i> Dirección predeterminada no encontrada.</p>`;
+            }
+        } else {
+            addressList.innerHTML = `<p><i class="bi bi-house-fill"></i> Dirección predeterminada no encontrada.</p>`;
+        }
+
+        // Mostrar boton
+        document.getElementById('edit-address-btn').style.display = 'inline-block';
+    }
+
+    document.getElementById('edit-address-btn').addEventListener('click', () => {
+        window.location.href = 'address.html'; // Redirigir a otra página para editar la dirección
+    });
+});
+
 
 
 

@@ -100,3 +100,64 @@
     gap: 1rem;
   }
   
+  /* Para pantallas pequeñas */
+@media (max-width: 600px) {
+  .product-card {
+      width: 100%;
+      padding: 10px;
+  }
+
+  #favorites-container {
+      padding: 10px;
+      justify-content: flex-start;
+  }
+
+  h1, h2 {
+      font-size: 20px;
+  }
+
+  button {
+      width: 100%;
+  }
+}
+
+/* Para pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .product-card {
+      width: 45%;
+      padding: 12px;
+  }
+
+  #favorites-container {
+      padding: 15px;
+  }
+
+  h1, h2 {
+      font-size: 24px;
+  }
+
+  button {
+      width: 100%;
+  }
+}
+
+/* Para pantallas grandes */
+@media (min-width: 1025px) {
+  .product-card {
+      width: 250px;
+      padding: 15px;
+  }
+
+  #favorites-container {
+      justify-content: center;
+      padding: 20px;
+  }
+
+  h1, h2 {
+      font-size: 28px;
+  }
+
+  button {
+      width: auto;
+  }
+}

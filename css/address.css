@@ -75,3 +75,86 @@ input[type="checkbox"] {
     cursor: pointer;
     border-radius: 4px;
 }
+
+/* Para pantallas pequeñas */
+@media (max-width: 600px) {
+    .address-page {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .directions {
+        padding: 15px;
+    }
+
+    .directions p {
+        font-size: 16px;
+    }
+
+    #address-list li {
+        padding: 8px;
+    }
+
+    input[type="text"], input[type="tel"] {
+        padding: 8px;
+    }
+
+    .submit-btn {
+        padding: 8px 12px;
+    }
+}
+
+/* Para pantallas medianas (tabletas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .address-page {
+        flex-direction: row;
+        padding: 15px;
+    }
+
+    .directions {
+        padding: 18px;
+    }
+
+    .directions p {
+        font-size: 17px;
+    }
+
+    #address-list li {
+        padding: 9px;
+    }
+
+    input[type="text"], input[type="tel"] {
+        padding: 9px;
+    }
+
+    .submit-btn {
+        padding: 9px 14px;
+    }
+}
+
+/* Para pantallas grandes (escritorios) */
+@media (min-width: 1025px) {
+    .address-page {
+        padding: 20px;
+    }
+
+    .directions {
+        padding: 20px;
+    }
+
+    .directions p {
+        font-size: 18px;
+    }
+
+    #address-list li {
+        padding: 10px;
+    }
+
+    input[type="text"], input[type="tel"] {
+        padding: 10px;
+    }
+
+    .submit-btn {
+        padding: 10px 15px;
+    }
+}

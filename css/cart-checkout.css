@@ -87,3 +87,105 @@ textarea {
   color: white; 
 }
 
+/* Para pantallas pequeñas */
+@media (max-width: 600px) {
+  .box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .experience {
+    width: 70%;
+  }
+
+  .rating {
+    font-size: 1.5rem;
+  }
+
+  textarea {
+    padding: 8px;
+  }
+
+  .button-container {
+    padding: 10px;
+  }
+
+  #map-image {
+    width: 100%;  
+    height: auto; 
+    max-width: 500px; 
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    object-fit: contain;  
+  }
+}
+
+/* Para pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .box {
+    width: 85%;
+    padding: 25px;
+  }
+
+  .experience {
+    width: 50%;
+  }
+
+  .rating {
+    font-size: 1.8rem;
+  }
+
+  textarea {
+    padding: 9px;
+  }
+
+  .button-container {
+    padding: 15px;
+  }
+
+ 
+  #map-image {
+    width: 100%;  
+    height: auto; 
+    max-width: 500px; 
+    display: block; 
+    margin-left: auto;
+    margin-right: auto; 
+    object-fit: contain;  
+  }
+}
+
+/* Para pantallas grandes */
+@media (min-width: 1025px) {
+  .box {
+    width: 80%;
+    padding: 30px;
+  }
+
+  .experience {
+    width: 30%;
+  }
+
+  .rating {
+    font-size: 2rem;
+  }
+
+  textarea {
+    padding: 10px;
+  }
+
+  .button-container {
+    padding: 20px;
+  }
+
+  #map-image {
+    width: 100%; 
+    height: auto;
+    max-width: 500px; 
+    display: block;  
+    margin-left: auto; 
+    margin-right: auto; 
+    object-fit: contain;  
+  }
+}
