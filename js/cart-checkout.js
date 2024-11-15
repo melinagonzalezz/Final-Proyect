@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Recuperar datos del usuario almacenados en localStorage
-    const formData = JSON.parse(localStorage.getItem("DatosdelUsuario"));
+    const formData = JSON.parse(localStorage.getItem("UserData:"));
 
     if (formData) {
         // Mostrar los datos recuperados en los campos correspondientes del DOM
@@ -174,6 +174,64 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'address.html'; // Redirigir a otra página para editar la dirección
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Recuperamos el subtotal guardado en localStorage
+    let subTotalValue = parseFloat(localStorage.getItem('savedTotal')) || 0; // Si no hay subtotal, ponemos 0
+
+    // Llamamos a la función para actualizar el total en el checkout
+    updateTotal(subTotalValue);  
+    
+    // Event listener para el cambio de tipo de envío
+    const shippingSelect = document.getElementById('types-of-shipments');
+    shippingSelect.addEventListener('change', function () {
+        updateTotal(subTotalValue);  // Actualizamos el total cuando cambie el tipo de envío
+    });
+});
+
+// Función para actualizar el total en el checkout
+function updateTotal(subTotalValue) {
+    const totalElement = document.getElementById("total-cost");
+    
+    // Llamar a la función que devuelve el costo de envío
+    const shippingCost = getShippingCost(subTotalValue); 
+    let totalValue = subTotalValue + shippingCost;
+    
+    // Mostrar el total con el envío
+    totalElement.innerHTML = `<i class="bi bi-arrow-right-square-fill"></i> Costo + envío: U$S ${totalValue.toFixed(2)}`; 
+}
+
+// Función para obtener el costo de envío según el tipo seleccionado
+function getShippingCost(subTotalValue) {
+
+    if(subTotalValue <= 0) {
+        return 0;
+    }
+
+    const shippingSelect = document.getElementById('types-of-shipments');
+    const selectedShipping = shippingSelect.value;
+    
+    // Calculamos el costo final subtotal + envío seleccionado
+    switch (selectedShipping) {
+        case 'premium':
+            return subTotalValue * 0.15;  // 15% del subtotal
+        case 'express':
+            return subTotalValue * 0.07;  // 7% del subtotal
+        case 'standard':
+            return subTotalValue * 0.05;  // 5% del subtotal
+        case 'base':
+            return 10;    // Costo fijo de U$S 10
+        case 'plus':
+            return 0;     // Gratis
+        default:
+            return 0;
+    }
+
+}
+
+
+
 
 
 

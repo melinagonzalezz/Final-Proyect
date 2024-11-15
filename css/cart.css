@@ -2,7 +2,7 @@ body {
     background-color: rgb(236, 234, 234);
 }
 
-.courrency, .btn {
+.currency, .btn {
     border-radius: 8px;
 }
 
@@ -24,7 +24,7 @@ body {
         background-color: rgb(240, 240, 240);
     }
 
-    .courrency, .btn {
+    .currency, .btn {
         padding: 8px 16px; 
         font-size: 14px;
     }
@@ -36,7 +36,7 @@ body {
 
 /* Para pantallas medianas */
 @media (min-width: 601px) and (max-width: 1024px) {
-    .courrency, .btn {
+    .currency, .btn {
         padding: 10px 18px; 
         font-size: 16px;
     }
@@ -48,7 +48,7 @@ body {
 
 /* para pantallas grandes */
 @media (min-width: 1025px) {
-    .courrency, .btn {
+    .currency, .btn {
         padding: 12px 20px;
         font-size: 18px;
     }

@@ -467,6 +467,9 @@ function saveToCart(product) {
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
         alert("Producto añadido al carrito");
+    } else {
+        alert('Este producto ya se encuentra en el carrito');
+        window.location.href = "cart.html";
     }
 
     console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);

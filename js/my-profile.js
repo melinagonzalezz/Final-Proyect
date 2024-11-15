@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Guardar los datos del perfil en localStorage
-        localStorage.setItem("DatosdelUsuario", JSON.stringify(formData));
-        console.log('Datos guardados:', formData);
+        localStorage.setItem("UserData:", JSON.stringify(formData));
+        console.log('Datos Guardados:', formData);
         alert("Los cambios han sido guardados correctamente.");
     });
 
@@ -143,4 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Actualizar el badge del carrito cuando la página se carga
     updateCartBadge();
+});
+
+// Mostrar el nombre del usuario al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    const userName = localStorage.getItem('currentUsername'); // Obtiene el nombre de usuario desde localStorage
+
+    // Muestra el nombre de usuario en el elemento correspondiente
+    const usernameDisplay = document.getElementById('username-display');
+    usernameDisplay.textContent = userName;
 });

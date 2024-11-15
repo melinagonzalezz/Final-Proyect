@@ -51,7 +51,7 @@
       </a>
 
       <a href="my-profile.html" class="nav-link d-flex align-items-center">
-        <p id="username-display" class="mb-0 me-2">Usuario</p>
+        <p id="username-display" class="mb-0 me-2"></p>
         <i class="bi bi-person"></i>
       </a>
       <a href="favorites.html" class="nav-link ms-3">
@@ -90,7 +90,7 @@
               <button class="btn btn-dark" type="submit" id="addDiscount">Aplicar</button>
             </div>
             <div id="discountMessage"></div>
-            <div id="discountCards"></div>
+      
             <hr>
 
             <br>
@@ -99,24 +99,26 @@
               <p class="flex-fill mb-0">SUBTOTAL</p>
               <p id="subTotal" class="flex-fill mb-0">$0</p>
             </div>
-            
-            <div class="container alert-dark mt-4 p-3 cnt">
-              <p class="fs-5 fw-bold">Gastos de envío</p>
-              <p class="fs-6">El costo dependerá del tipo envío que elija.</p>
-              <p class="m-1 fs-6 fw-bold">Gratis retirando en tienda.</p>
-            </div>
 
+            <div id="discountCards"></div>
+            
             <form>
-            <select class="form-select courrency btn-dark mt-4 p-2" id="currencySelect" aria-label="Selecciona una moneda">
-              <option value="" selected disabled>Moneda</option>
-              <option value="US">USD</option>
-              <option value="UY">UY</option>
-            </select>
-          </form>
+              <select class="form-select corrency btn-dark mt-4 p-2" id="currencySelect" aria-label="Selecciona una moneda">
+                <option value="" selected disabled>Moneda</option>
+                <option value="US">USD</option>
+                <option value="UY">UY</option>
+              </select>
+            </form>
             
             <div class="d-flex justify-content-between bg-dark text-light mt-4 p-2 courrency">
               <p class="flex-fill mb-0">TOTAL</p>
               <p class="flex-fill mb-0" id="total">$0</p>
+            </div>
+
+            <div class="container alert-dark mt-4 p-3 cnt">
+              <p class="fs-5 fw-bold">Gastos de envío</p>
+              <p class="fs-6">El costo dependerá del tipo envío que elija.</p>
+              <p class="m-1 fs-6 fw-bold">Gratis retirando en tienda.</p>
             </div>
             
             <div class="d-flex align-items-start mt-4">

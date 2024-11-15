@@ -148,3 +148,12 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 });
+
+// Mostrar el nombre del usuario al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    const userName = localStorage.getItem('currentUsername'); // Obtiene el nombre de usuario desde localStorage
+
+    // Muestra el nombre de usuario en el elemento correspondiente
+    const usernameDisplay = document.getElementById('username-display');
+    usernameDisplay.textContent = userName;
+});
