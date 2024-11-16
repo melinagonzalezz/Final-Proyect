@@ -299,7 +299,6 @@ document.getElementById("cart-to-checkout-1").addEventListener("click", function
 
     // Validar que el carrito no esté vacío
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    
     if (cartItems.length === 0) {
         alert("¡Por favor selecciona al menos un producto para continuar!");
         return false;
@@ -307,7 +306,6 @@ document.getElementById("cart-to-checkout-1").addEventListener("click", function
 
     // Verificar si se aceptaron los términos y condiciones
     const termsCheckbox = document.getElementById("termsCheckbox");
-
     if (!termsCheckbox.checked) {
         alert("Debes aceptar los términos y condiciones para continuar.");
         return false;
@@ -315,7 +313,6 @@ document.getElementById("cart-to-checkout-1").addEventListener("click", function
 
     // Verificar que la moneda esté guardada en localStorage
     const currency = localStorage.getItem('selectedCurrency');
-
     if (!currency) {
         alert('La moneda no está seleccionada.');
         return false;
@@ -323,10 +320,9 @@ document.getElementById("cart-to-checkout-1").addEventListener("click", function
     
     // Verificar que el total esté guardado en localStorage
     const totalSaved = localStorage.getItem('savedTotal');    
-    
     if (!totalSaved || totalSaved === 0) {
         console.log ("No se ha gruardado el total.");
-        return false;
+        return false
     }
     
     // Verificar si se han seleccionado descuentos
