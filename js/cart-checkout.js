@@ -1,12 +1,3 @@
-//CAMBIOS PARA ENTREGA 7
-//Tomar datos de local Storage para identificacion (mel)
-//DESPLEGAR CAMPOS PARA DIRECCIONES Y UN MAPITA + direcciones ficticias WII (mel) 
-//En caso de seleccionar Patience Pass Guardar cupon en Local Storage (pao)
-//
-//Costo + envio de local storage (DANA)
-//Validaciones. Finalizar compra. (WE ALL DO THIS.)
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // Recuperar botones y agregar evento de selección
     const buttons = document.querySelectorAll('.option-btn');
@@ -27,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cambiar de la sección 'checkout-1' a 'checkout-2' cuando se hace clic en 'goToCheckout2'
     goToCheckout2.addEventListener('click', () => {
+        validateContinue1();
         changeSection('checkout-1', 'checkout-2');
+        
     });
 
     // Volver a la sección 'checkout-1' desde 'checkout-2'
@@ -39,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cambiar a la sección 'checkout-3' desde 'checkout-2'
     goToCheckout3.addEventListener('click', (event) => {
         event.preventDefault(); // Evitar la acción predeterminada
+        validateContinue2();
         changeSection('checkout-2', 'checkout-3');
+        
+
 
         // Obtener el select de tipo de envío
         const shippingSelect = document.getElementById('types-of-shipments');
@@ -97,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayNumber.textContent = `Telefono/Movil: ${formData.telefono || 'No disponible'}`;
         }
     } else {
-        console.warn("No se encontraron datos del usuario en localStorage.");
+        console.log("No se encontraron datos del usuario en localStorage.");
     }
 });
 
@@ -176,17 +172,71 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// document.addEventListener("DOMContentLoaded", function () {
+//     // Recuperamos el subtotal guardado en localStorage
+//     let totalValue = parseFloat(localStorage.getItem('savedTotal')) || 0; // Si no hay total, ponemos 0
+
+//     // Llamamos a la función para actualizar el total en el checkout
+//     updateTotal(this);  
+    
+//     // Event listener para el cambio de tipo de envío
+//     const shippingSelect = document.getElementById('types-of-shipments');
+//     shippingSelect.addEventListener('change', function () {
+//         updateTotal(totalValue);  // Actualizamos el total cuando cambie el tipo de envío
+//     });
+// });
+
+// // Función para actualizar el total en el checkout
+// function updateTotal(subTotalValue) {
+//     const totalElement = document.getElementById("total-cost");
+    
+//     // Llamar a la función que devuelve el costo de envío
+//     const shippingCost = getShippingCost(subTotalValue); 
+//     let totalValue = subTotalValue + shippingCost;
+    
+//     // Mostrar el total con el envío
+//     totalElement.innerHTML = `<i class="bi bi-arrow-right-square-fill"></i> Costo + envío: U$S ${totalValue.toFixed(2)}`; 
+// }
+
+// // Función para obtener el costo de envío según el tipo seleccionado
+// function getShippingCost(subTotalValue) {
+
+//     if(subTotalValue <= 0) {
+//         return 0;
+//     }
+
+//     const shippingSelect = document.getElementById('types-of-shipments');
+//     const selectedShipping = shippingSelect.value;
+    
+//     // Calculamos el costo final subtotal + envío seleccionado
+//     switch (selectedShipping) {
+//         case 'premium':
+//             return subTotalValue * 0.15;  // 15% del subtotal
+//         case 'express':
+//             return subTotalValue * 0.07;  // 7% del subtotal
+//         case 'standard':
+//             return subTotalValue * 0.05;  // 5% del subtotal
+//         case 'base':
+//             return 10;    // Costo fijo de U$S 10
+//         case 'plus':
+//             return 0;     // Gratis
+//         default:
+//             return 0;
+//     }
+
+// }
+
 document.addEventListener("DOMContentLoaded", function () {
     // Recuperamos el subtotal guardado en localStorage
-    let subTotalValue = parseFloat(localStorage.getItem('savedTotal')) || 0; // Si no hay subtotal, ponemos 0
+    let totalValue = parseFloat(localStorage.getItem('savedTotal')) || 0; // Si no hay total, ponemos 0
 
     // Llamamos a la función para actualizar el total en el checkout
-    updateTotal(subTotalValue);  
-    
+    updateTotal(totalValue);  
+
     // Event listener para el cambio de tipo de envío
     const shippingSelect = document.getElementById('types-of-shipments');
     shippingSelect.addEventListener('change', function () {
-        updateTotal(subTotalValue);  // Actualizamos el total cuando cambie el tipo de envío
+        updateTotal(totalValue);  // Actualizamos el total cuando cambie el tipo de envío
     });
 });
 
@@ -204,7 +254,6 @@ function updateTotal(subTotalValue) {
 
 // Función para obtener el costo de envío según el tipo seleccionado
 function getShippingCost(subTotalValue) {
-
     if(subTotalValue <= 0) {
         return 0;
     }
@@ -227,23 +276,143 @@ function getShippingCost(subTotalValue) {
         default:
             return 0;
     }
-
 }
 
 
 
+function validateContinue1() {
+    // Validar si el usuario tiene datos de identificación guardados
+    const userData = localStorage.getItem('UserData:');
+    if (!userData || userData.trim() === "") {
+        alert("No has proporcionado tus datos. Por favor, completa tu información en el perfil.");
+        window.location.href = "my-profile.html";
+        return false;
+    }
+
+    // Verificar si se ha seleccionado una dirección de envío
+    const selectedOption = document.querySelector('.option-btn.selected');
+    if (!selectedOption) {
+        alert("Por favor, selecciona una opción de dirección o retiro.");
+        return false;
+    }
+
+    if (selectedOption.textContent === "Retiro en tienda") {
+        console.log("Retira en tienda");
+    
+    } else {
+       
+        // Si seleccionó "Envío a domicilio", asegurarse de que la dirección esté guardada
+        const savedAddresses = localStorage.getItem('addresses');
+        if (!savedAddresses || savedAddresses.trim() === "[]") {
+            alert("Por favor, selecciona una dirección de envío antes de continuar.");
+            window.location.href = "address.html";
+            return false;
+        }
+
+        // Convertir la cadena JSON guardada en un objeto
+        let addressesArray;
+        try {
+            addressesArray = JSON.parse(savedAddresses);
+        } catch (e) {
+            alert("Error en los datos de dirección. Por favor, revisa tu perfil.");
+            return false;
+        }
+
+        // Verificar si hay una dirección predeterminada marcada (isDefault)
+        const defaultAddress = addressesArray.find(address => address.isDefault);
+        if (!defaultAddress) {
+            alert("Por favor, selecciona una dirección de envío válida antes de continuar.");
+            window.location.href = "address.html";
+            return false;
+        }
+    }
+
+    // Si todo está bien, se puede continuar
+    return true;
+}
+
+function validateContinue2(event) {
+    if (event) event.preventDefault(); // Evitar la acción predeterminada si es un evento de formulario
+    console.log("Validando formulario...");
+
+    // Verificar que se haya guardado el tipo de envío
+    const shippingType = localStorage.getItem("shippingType");
+    console.log("Tipo de envío seleccionado:", shippingType);
+    if (!shippingType) {
+        alert("Por favor, selecciona un tipo de envío.");
+        console.error("Error: No se seleccionó un tipo de envío.");
+        return false;
+    }
+
+    // Si se selecciona el envío Paciencia Plus, se le agrega un cupón en localStorage
+    if (shippingType === "plus") {
+        localStorage.setItem('userDiscounts', JSON.stringify('ZEN10'));
+        alert("Ganaste un cupón de descuento del 10% en tu próxima compra.");
+        console.log("Cupón ZEN10 agregado al localStorage.");
+    }
+
+    // Validar método de pago
+    const selectedPaymentMethod = document.querySelector('.nav-link.active')?.getAttribute('id');
+    console.log("Método de pago seleccionado:", selectedPaymentMethod);
+    if (!selectedPaymentMethod) {
+        alert("Por favor, selecciona un método de pago.");
+        console.error("Error: No se seleccionó un método de pago.");
+        return false;
+    }
+
+    if (selectedPaymentMethod === 'debit-tab') {
+        console.log("Validando campos de débito...");
+        // Validar campos de débito
+        const fields = [
+            'number-debit',
+            'quotas-debit',
+            'expirationM-debit',
+            'expirationA-debit',
+            'security-debit',
+            'card-name-debit',
+        ];
+        for (const field of fields) {
+            const value = document.getElementById(field)?.value;
+            console.log(`Campo ${field}:`, value);
+            if (!value) {
+                alert('Por favor, completa todos los campos de débito.');
+                console.error(`Error: Campo ${field} está vacío.`);
+                return false;
+            }
+        }
+    } else if (selectedPaymentMethod === 'credit-tab') {
+        console.log("Validando campos de crédito...");
+        // Validar campos de crédito
+        const fields = [
+            'number-credit',
+            'quotas-credit',
+            'expirationM-credit',
+            'expirationA-credit',
+            'security-credit',
+            'card-name-credit',
+        ];
+        for (const field of fields) {
+            const value = document.getElementById(field)?.value;
+            console.log(`Campo ${field}:`, value);
+            if (!value) {
+                alert('Por favor, completa todos los campos de crédito.');
+                console.error(`Error: Campo ${field} está vacío.`);
+                return false;
+            }
+        }
+    } else if (selectedPaymentMethod === 'pickup-tab') {
+        console.log('Pago en sucursal seleccionado.');
+    }
+
+    // Si todo está correcto, se puede continuar
+    console.log("Formulario validado correctamente.");
+    return true;
+}
+
+//Sabado Costos de Envio y Metodos de pago
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+    
+    
