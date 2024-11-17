@@ -123,3 +123,70 @@ function loadAddresses() {
 
 // Cargar direcciones cuando la página se haya cargado
 document.addEventListener('DOMContentLoaded', loadAddresses);
+
+ //BADGE---------------------------------------------------------------------
+ function saveToCart(product) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Verificar si el producto ya está en el carrito
+  const cartItems = cart.some(item => item.id === product.id);
+
+  if (!cartItems) {
+    cart.push(product); 
+    localStorage.setItem("cart", JSON.stringify(cart)); 
+    updateCartBadge(); 
+  } else {
+    alert('Este producto ya se encuentra en el carrito.');
+  }
+
+  console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(productId) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  // Filtrar el carrito para eliminar el producto con el id especificado
+  cart = cart.filter(item => item.id !== productId);
+  
+  localStorage.setItem("cart", JSON.stringify(cart)); 
+  updateCartBadge(); }
+  displayCart(); 
+
+// Función para actualizar el badge del carrito
+function updateCartBadge() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || []; 
+  const badge = document.getElementById('cart-badge'); 
+  badge.textContent = cart.length; 
+  
+  if (cart.length === 0) {
+    badge.style.display = 'none'; 
+  } else {
+    badge.style.display = 'inline-block'; 
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  displayCart(); 
+  updateCartBadge(); 
+});
+
+//funcion para eliminar
+function removeFromCart(productId) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  cart = cart.filter(item => item.id !== productId);
+  
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartBadge(); 
+}
+
+function updateCartBadge() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const badge = document.getElementById('cart-badge');
+  badge.textContent = cart.length; 
+}
+
+window.onload = function() {
+  updateCartBadge();
+};
