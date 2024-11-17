@@ -315,7 +315,7 @@ function validateContinue2(event) {
             const field = document.getElementById(fieldId);
             if (!field || !field.value.trim()) {
                 field?.classList.add('is-invalid');
-                console.error(`Error: Campo ${fieldId} está vacío.`);
+                console.log(`Campo ${fieldId} está vacío.`);
                 isValid = false;
             } else {
                 field?.classList.remove('is-invalid');
