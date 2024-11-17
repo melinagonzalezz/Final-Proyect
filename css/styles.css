@@ -33,7 +33,7 @@ nav a {
   height: 50vh;
   padding: 5em;
   margin-bottom: 0;
-  background-color: #53C0FB;
+  background-color: black;
   background: url('../img/cover_back.png');
   background-size: cover;
   background-position: center;
@@ -69,7 +69,7 @@ nav a {
 }
 
 .dropzone {
-  border: 2px dashed #6495ED;
+  border: 2px dashed #000000;
   border-radius: 5px;
   background: white;
 }
@@ -149,7 +149,7 @@ nav a {
 
 #spinner-wrapper {
   position: fixed;
-  background-color: #6495ED;
+  background-color: #000000;
   width: 100%;
   height: 100%;
   top: 0;
@@ -173,7 +173,7 @@ a.custom-card:hover {
 }
 
 .site-header {
-  background-color: #6495ED;
+  background-color: #000000;
   padding: 10px; /* espaciado */
   color: white; /* color del texto*/
   display: flex; /*fila */
@@ -214,26 +214,24 @@ a.custom-card:hover {
   margin-left: 10px; 
 }
 
-.help-icon {
+/* Estilos del ícono de ayuda */
+.help-icon i {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #1434A4;
-  color: white;
-  width: 50px;
-  height: 50px;
+  width: auto;
+  height: auto;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(71, 2, 246, 0.2);
-  transition: background-color 0.3s ease;
+  font-size: 75px;
+  color: #000000;
+  transition: background-color 0.3s ease; 
 }
 
 .help-icon:hover {
-background-color: #4169E1;
+background-color: #ffffff;
 }
 
 
@@ -275,13 +273,9 @@ background-color: #4169E1;
     border: none;
   }
 
-  /* .navbar .nav-item img {
-    max-height: 5px; 
-    width: auto; 
-  } */
 
 
-/* Estilos de la barra de navegación en pantallas pequeñas */
+/* Estilos en pantallas pequeñas */
 @media (max-width: 992px) {
   .navbar-nav {
     text-align: center;
@@ -289,6 +283,12 @@ background-color: #4169E1;
 
   .navbar-nav .nav-item {
     margin-top: 10px;
+  }
+
+  .help-icon i {
+    font-size: 60px; /* Reducción del tamaño del ícono */
+    bottom: 15px;
+    right: 15px; /* Ajusta la distancia a los bordes */
   }
 }
 
@@ -306,15 +306,28 @@ background-color: #4169E1;
     width: 90%; 
   }
 
+  .help-icon i {
+    font-size: 50px;
+    bottom: 10px;
+    right: 10px;
+  }
   .help-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 45px;
+    height: 45px;
   }
 }
 
 @media (max-width: 480px) {
   .jumbotron .lead {
     font-size: 20px; 
+  }
+  .help-icon i {
+    font-size: 40px; 
+    bottom: 10px;
+    right: 10px;
+  }
+  .help-icon {
+    width: 40px;
+    height: 40px;
   }
 }

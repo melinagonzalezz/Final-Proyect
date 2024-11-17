@@ -258,3 +258,94 @@ display: grid;
   color: gray;
 
 }
+/*Para pantallas pequeñas*/
+@media (max-width: 600px) {
+  .profile-page {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-right: 0;
+    padding: 10px;
+  }
+
+  .profile-content {
+    padding: 10px;
+  }
+
+  #edit-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-picture-container {
+    width: 80%;
+    padding: 10px;
+  }
+
+  .card_container {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+/* Para pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .profile-page {
+    padding: 15px;
+  }
+
+  .sidebar {
+    width: 30%;
+    margin-right: 15px;
+  }
+
+  .profile-content {
+    padding: 15px;
+  }
+
+  #edit-profile {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .profile-picture-container {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .card_container {
+    gap: 2em;
+  }
+
+  .card {
+    width: 48%;
+  }
+}
+
+/* Para pantallas grandes */
+@media (min-width: 1025px) {
+  .profile-page {
+    padding: 20px;
+  }
+
+  .sidebar {
+    width: 250px;
+  }
+
+  .profile-content {
+    padding: 20px;
+  }
+
+  .card_container {
+    gap: 4em;
+  }
+
+  .card {
+    width: 400px;
+  }
+}

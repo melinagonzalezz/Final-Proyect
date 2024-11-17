@@ -88,21 +88,20 @@
 
             <div class="card">
                 <div class="card_title">
-                    <h5>Información de contacto</h5>
+                    <h5> Información de contacto </h5>
                     <a href="my-profile.html">Editar</a>
                     
                 </div>
                 <div class="card_body">
-                    <p>Nombre Apellido</p>
-                    <p>Usuario@correo.com</p>
-                    <p>09x xxx xxx</p>
+                    <p id="info-name"></p>
+                    <p id="info-email"></p>
+                    <p id="info-number"></p>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card_title">
                     <h5>Recibir ofertas por correo</h5>
-                    <!-- <a href="#">Editar</a> -->
                     
                 </div>
                 <div class="card_body">
@@ -118,9 +117,9 @@
                     <a href="address.html">Editar</a>
                     
                 </div>
-                <div class="card_body">
-                    <p class="predeterminada">Departamento, Localidad, Calle Número, piso/Apto</p>
-                    <p>Departamento, Localidad, Calle Número, piso/Apto</p>
+                <div class="card_body" id="direction-list">
+                    <p class="predeterminada" id="address-default"></p>
+                    <p class="secundaria" id="address-secondary"></p>
                 </div>
             </div>
         </div>
@@ -163,6 +162,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  <script src="js/info-cuenta.js"></script>
 </body>
 
 </html>

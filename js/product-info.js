@@ -467,6 +467,9 @@ function saveToCart(product) {
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
         alert("Producto añadido al carrito");
+    } else {
+        alert('Este producto ya se encuentra en el carrito');
+        window.location.href = "cart.html";
     }
 
     console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
@@ -493,4 +496,166 @@ function saveToFavorites(product) {
     window.location.href = "favorites.html";
 }
 
+// BADGE
+function saveToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    // Verificar si el producto ya está en el carrito
+    const cartItems = cart.some(item => item.id === product.id);
+  
+    if (!cartItems) {
+      cart.push(product); 
+      localStorage.setItem("cart", JSON.stringify(cart)); 
+      updateCartBadge(); 
+    } else {
+      alert('Este producto ya se encuentra en el carrito.');
+    }
+  
+    console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
+  }
+  
+  // Función para eliminar un producto del carrito
+  function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    // Filtrar el carrito para eliminar el producto con el id especificado
+    cart = cart.filter(item => item.id !== productId);
+    
+    localStorage.setItem("cart", JSON.stringify(cart)); 
+    updateCartBadge(); 
+    displayCart(); 
+  }
+  
+  // Función para actualizar el badge del carrito
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || []; 
+    const badge = document.getElementById('cart-badge'); 
+    badge.textContent = cart.length; 
+  
+    if (cart.length === 0) {
+      badge.style.display = 'none'; 
+    } else {
+      badge.style.display = 'inline-block'; 
+    }
+  }
+  
+  function displayCart() {
+    const cartItemsContainer = document.getElementById("cart-list");
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    cartItemsContainer.innerHTML = "";
+  
+    if(cartItems.length === 0) {
+      cartItemsContainer.innerHTML = `
+        <p>Aún no has añadido ningún producto</p>
+        <br>
+        <a href="index.html">Volver a inicio</a>`;
+    } else {
+      cartItems.forEach((product, index) => {
+        let newItem = `
+          <div class="card mb-3 bg-secondary">
+            <div class="row g-0 m-3">
+              <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+                <div class="card-img-top d-flex justify-content-center">
+                  <img src="${product.image}" alt="${product.name}" class="img-fluid" style="max-width: 100%; height: auto;">
+                </div>
+              </div>
+  
+              <div class="col-md-8 col-sm-12 ps-4">
+                <div class="card-body d-flex flex-column justify-content-between position-relative h-100">
+                  <h4 class="card-title f-wbold">${product.name}</h4>
+  
+                  <div class="d-flex">
+                    <p class="card-text fw-bold currency">${product.currency}</p>
+                    <p class="card-text fw-bold">$</p>
+                    <p class="card-text fw-bold price">${product.cost}</p>
+                  </div>
+  
+                  <p class="card-text">Cod-${product.id}</p>
+  
+                  <div class="product d-flex align-items-center mb-2 w-sm-auto d-sm-block">
+                    <span class="me-2">Cantidad:</span>
+                    <div class="input-group flex-nowrap" style="max-width: 120px;">
+                      <button id="subtract" class="btn btn-light decrease-btn">-</button>
+                      <input type="number" value="1" id="quantity" min="1" class="form-control text-center quantity-input">
+                      <button id="add" class="btn btn-light increase-btn">+</button>
+                    </div>
+                  </div>
+  
+                  <button id="ver-btn-${product.id}" class="btn btn-dark position-relative m-2 order-2 order-sm-5" href="">Ver Detalles</button>
+                  <button onclick="removeFromCart(${product.id})" class="btn btn-dark position-relative m-2 order-2 order-sm-5" href="">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+  
+        // Añadir tarjeta del producto
+        cartItemsContainer.innerHTML += newItem;
+  
+        // Agregar evento para guardar ID y redirigir
+        document.getElementById(`ver-btn-${product.id}`).addEventListener('click', function() {
+          saveProductId(product.id, category);
+        });
+      });
+    }
+  
+    updateSubTotal(); 
+  }
+  
+  // Función para actualizar el subtotal
+  function updateSubTotal() {
+    const subtotalElement = document.getElementById("subTotal");
+    let subTotalValor = 0;
+    const cards = document.querySelectorAll(".card-body");
+  
+    cards.forEach(card => {
+      const quantityInput = card.querySelector('.quantity-input');
+      const currency = card.querySelector('.currency').textContent.trim();
+      const priceElement = card.querySelector('.price'); 
+  
+      quantityInput.value = parseInt(quantityInput.value.replace(/[^0-9]/g, '')); 
+  
+      if (currency === "USD") {
+        subTotalValor += quantityInput.value * parseFloat(priceElement.textContent);
+      } else {
+        subTotalValor += quantityInput.value * parseFloat(priceElement.textContent) / 42;
+      }
+    });
+  
+    subtotalElement.textContent = 'USD $' + subTotalValor.toFixed(2);
+    updateTotal();
+  }
+  
+  // Función para actualizar el total
+  function updateTotal() {
+    const subtotalElement = document.getElementById("subTotal");
+    const totalElement = document.getElementById("total");
+    const shippingCost = 25; 
+  
+    let subTotalValue = parseFloat(subtotalElement.textContent.replace('USD $', ''));
+    let totalValue = subTotalValue + shippingCost; 
+  
+    const currencySelected = document.getElementById('currencySelect').value;
+  
+    if (currencySelected === "US") {
+      totalElement.textContent = 'Total: $' + totalValue.toFixed(2); 
+    } else if (currencySelected === "UY") {
+      totalElement.textContent = 'Total: $' + (totalValue * 42).toFixed(2); 
+    } else {
+      totalElement.textContent = 'Error: Moneda no reconocida';
+    }
+  }
+  
+  // Función para guardar el ID y redirigir a la página de detalles
+  function saveProductId(id, category) {
+    const queryString = `?id=${id}&category=${category}`;
+    window.location.href = `product-info.html${queryString}`;
+  }
+  
+  // Inicialización del carrito al cargar la página
+  document.addEventListener("DOMContentLoaded", function() {
+    displayCart(); 
+    updateCartBadge(); 
+  });
 

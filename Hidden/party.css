@@ -1,0 +1,89 @@
+/* Estilos para la temática de fiesta */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 5px rgba(255, 0, 255, 0.6);
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+h1 {
+  font-size: 3em;
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  animation: neon 1.5s infinite alternate;
+}
+
+@keyframes neon {
+  0% {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
+  50% {
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+  }
+  100% {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
+}
+
+.party-message {
+  font-size: 1.5em;
+  margin-top: 10px;
+  color: #ffff00;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.lights {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #ff69b4;
+  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+}
+
+button {
+  margin-top: 30px;
+  padding: 15px 25px;
+  font-size: 1.5em;
+  background-color: #ff00ff;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 0px 20px 5px rgba(255, 0, 255, 0.6);
+}
+
+button:hover {
+  background-color: #ff69b4;
+  box-shadow: 0px 0px 20px 5px rgba(255, 105, 180, 0.6);
+}
