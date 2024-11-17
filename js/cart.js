@@ -337,18 +337,48 @@ document.getElementById("cart-to-checkout-1").addEventListener("click", function
 
 });
 
-// Función para actualizar el contador del carrito (badge)
-function updateCartBadge() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || []; // Recupera el carrito desde el almacenamiento local
-  const badge = document.getElementById('cart-badge'); // Obtiene el elemento del contador del carrito
-  badge.textContent = cart.length; // Actualiza el contador con la cantidad de productos en el carrito
+// Función para agregar un producto al carrito
+function saveToCart(product) {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Muestra/oculta el badge según la cantidad de productos
-  if (cart.length === 0) {
-    badge.style.display = 'none'; // Oculta el badge si el carrito está vacío
-  } else {
-    badge.style.display = 'inline-block'; // Muestra el badge si hay productos en el carrito
-  }
+// Verificar si el producto ya está en el carrito
+const cartItems = cart.some(item => item.id === product.id);
+
+if (!cartItems) {
+  cart.push(product); // Agregar producto al carrito
+  localStorage.setItem("cart", JSON.stringify(cart)); // Guardar carrito en localStorage
+  updateCartBadge(); // Actualizar el badge
+} else {
+  alert('Este producto ya se encuentra en el carrito.');
+}
+
+console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`);
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(productId) {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Filtrar el carrito para eliminar el producto con el id especificado
+cart = cart.filter(item => item.id !== productId);
+
+localStorage.setItem("cart", JSON.stringify(cart)); // Guardar carrito actualizado
+updateCartBadge(); // Actualizar el badge
+displayCart(); // Actualizar la vista del carrito
+}
+
+// Función para actualizar el badge del carrito
+function updateCartBadge() {
+const cart = JSON.parse(localStorage.getItem("cart")) || []; // Recuperar carrito desde localStorage
+const badge = document.getElementById('cart-badge'); // Obtener el elemento del badge
+badge.textContent = cart.length; // Actualizar el contenido del badge
+
+// Si el carrito está vacío, ocultamos el badge (opcional)
+if (cart.length === 0) {
+  badge.style.display = 'none'; // Puedes ocultar el badge si no hay productos
+} else {
+  badge.style.display = 'inline-block'; // Aseguramos que el badge se muestre
+}
 }
 
 // Función para agregar un producto al carrito
@@ -391,7 +421,12 @@ document.addEventListener("DOMContentLoaded", function() {
   updateCartBadge(); // Asegura que el badge se actualice al cargar la página
 });
 
-// Al llamar a saveToCart o removeFromCart, se actualizará el badge automáticamente
+// Inicialización del carrito al cargar la página
+document.addEventListener("DOMContentLoaded", function() {
+displayCart();
+updateCartBadge(); 
+});
+
 
 
 
