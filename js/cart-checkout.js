@@ -32,10 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cambiar a la sección 'checkout-3' desde 'checkout-2'
     goToCheckout3.addEventListener('click', (event) => {
         event.preventDefault(); // Evitar la acción predeterminada
-        validateContinue2();
+
+        // Verificar si la validación pasa
+        const isValid = validateContinue2(); // La función devuelve `true` o `false`
+        if (!isValid) {
+            console.error("No se puede avanzar porque la validación falló.");
+            return; // Detener la ejecución si la validación no pasa
+        }
+        
+        // Si la validación pasa, cambiar a la siguiente sección
         changeSection('checkout-2', 'checkout-3');
         
-
 
         // Obtener el select de tipo de envío
         const shippingSelect = document.getElementById('types-of-shipments');
@@ -276,40 +283,50 @@ function validateContinue1() {
     // Si todo está bien, se puede continuar
     return true;
 }
-
 function validateContinue2(event) {
-    if (event) event.preventDefault(); // Evitar la acción predeterminada si es un evento de formulario
+    if (event) event.preventDefault(); // Evitar la acción predeterminada
     console.log("Validando formulario...");
 
-    // Verificar que se haya guardado el tipo de envío
+    // Verificar el tipo de envío
     const shippingType = localStorage.getItem("shippingType");
     console.log("Tipo de envío seleccionado:", shippingType);
     if (!shippingType) {
         alert("Por favor, selecciona un tipo de envío.");
-        console.error("Error: No se seleccionó un tipo de envío.");
         return false;
     }
 
-    // Si se selecciona el envío Paciencia Plus, se le agrega un cupón en localStorage
     if (shippingType === "plus") {
         localStorage.setItem('userDiscounts', JSON.stringify('ZEN10'));
         alert("Ganaste un cupón de descuento del 10% en tu próxima compra.");
-        console.log("Cupón ZEN10 agregado al localStorage.");
     }
 
-    // Validar método de pago
+    // Validar método de pago seleccionado
     const selectedPaymentMethod = document.querySelector('.nav-link.active')?.getAttribute('id');
     console.log("Método de pago seleccionado:", selectedPaymentMethod);
     if (!selectedPaymentMethod) {
         alert("Por favor, selecciona un método de pago.");
-        console.error("Error: No se seleccionó un método de pago.");
         return false;
     }
 
+    // Validar campos según el método de pago
+    const validateFields = (fields) => {
+        let isValid = true;
+        fields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (!field || !field.value.trim()) {
+                field?.classList.add('is-invalid');
+                console.error(`Error: Campo ${fieldId} está vacío.`);
+                isValid = false;
+            } else {
+                field?.classList.remove('is-invalid');
+            }
+        });
+        return isValid;
+    };
+
     if (selectedPaymentMethod === 'debit-tab') {
         console.log("Validando campos de débito...");
-        // Validar campos de débito
-        const fields = [
+        const debitFields = [
             'number-debit',
             'quotas-debit',
             'expirationM-debit',
@@ -317,19 +334,13 @@ function validateContinue2(event) {
             'security-debit',
             'card-name-debit',
         ];
-        for (const field of fields) {
-            const value = document.getElementById(field)?.value;
-            console.log(`Campo ${field}:`, value);
-            if (!value) {
-                alert('Por favor, completa todos los campos de débito.');
-                console.error(`Error: Campo ${field} está vacío.`);
-                return false;
-            }
+        if (!validateFields(debitFields)) {
+            alert("Por favor, completa todos los campos de débito.");
+            return false;
         }
     } else if (selectedPaymentMethod === 'credit-tab') {
         console.log("Validando campos de crédito...");
-        // Validar campos de crédito
-        const fields = [
+        const creditFields = [
             'number-credit',
             'quotas-credit',
             'expirationM-credit',
@@ -337,20 +348,14 @@ function validateContinue2(event) {
             'security-credit',
             'card-name-credit',
         ];
-        for (const field of fields) {
-            const value = document.getElementById(field)?.value;
-            console.log(`Campo ${field}:`, value);
-            if (!value) {
-                alert('Por favor, completa todos los campos de crédito.');
-                console.error(`Error: Campo ${field} está vacío.`);
-                return false;
-            }
+        if (!validateFields(creditFields)) {
+            alert("Por favor, completa todos los campos de crédito.");
+            return false;
         }
     } else if (selectedPaymentMethod === 'pickup-tab') {
-        console.log('Pago en sucursal seleccionado.');
+        console.log("Pago en sucursal seleccionado.");
     }
 
-    // Si todo está correcto, se puede continuar
     console.log("Formulario validado correctamente.");
     return true;
 }
