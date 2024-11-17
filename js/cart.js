@@ -261,8 +261,6 @@ function discounts() {
     localStorage.setItem("selectedDiscount", JSON.stringify(selectedDiscount));
     updateTotal();
 };
-
-// Eventos
 document.getElementById("addDiscount").addEventListener("click", discounts);
 
 function saveCurrency() {

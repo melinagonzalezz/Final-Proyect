@@ -33,17 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     goToCheckout3.addEventListener('click', (event) => {
         event.preventDefault(); // Evitar la acción predeterminada
 
-        // Verificar si la validación pasa
-        const isValid = validateContinue2(); // La función devuelve `true` o `false`
-        if (!isValid) {
-            console.error("No se puede avanzar porque la validación falló.");
-            return; // Detener la ejecución si la validación no pasa
-        }
-        
-        // Si la validación pasa, cambiar a la siguiente sección
-        changeSection('checkout-2', 'checkout-3');
-        
-
         // Obtener el select de tipo de envío
         const shippingSelect = document.getElementById('types-of-shipments');
         // Verificar si ya hay un tipo de envío guardado en LocalStorage
@@ -59,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Verificar si el tipo de envío seleccionado es "Paciencia Plus"
-        let shipping = localStorage.getItem("shippingType");
-        if (shipping === "plus") {
+        if (savedShippingType  === "plus") {
             // Obtener los descuentos del localStorage o inicializar un array vacío si no existen
             let userDiscounts = JSON.parse(localStorage.getItem("userDiscounts")) || [];
             // Añadir el descuento "plus" al array de descuentos
@@ -73,6 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             console.log(userDiscounts); // Imprimir los descuentos actualizados en la consola
         }
+
+        // Verificar si la validación pasa
+        const isValid = validateContinue2(event); // La función devuelve `true` o `false`
+        if (!isValid) {
+            console.error("No se puede avanzar porque la validación falló.");
+            return; // Detener la ejecución si la validación no pasa
+        }
+
+        // Si la validación pasa, cambiar a la siguiente sección
+        changeSection('checkout-2', 'checkout-3');
+
     });
 
     // Volver a la sección 'checkout-2' desde 'checkout-3'
@@ -179,59 +178,81 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Recuperamos el subtotal guardado en localStorage
-    let subTotalValue = parseFloat(localStorage.getItem('savedTotal')) || 0; // Si no hay subtotal, ponemos 0
+    // Recuperamos el subtotal guardado en localStorage como texto
+    let savedTotal = localStorage.getItem("savedTotal") || "0"; // Si no existe, usamos "0"
 
-    // Llamamos a la función para actualizar el total en el checkout
-    updateTotal(subTotalValue);  
-    
-    // Event listener para el cambio de tipo de envío
+    // Eliminamos el texto adicional "Total: $" y convertimos a número
+    savedTotal = parseFloat(savedTotal.replace(/[^0-9.-]/g, "")) || 0;
+
+    console.log("El precio guardado es:", savedTotal);
+
+    // Verificamos si el elemento existe antes de continuar
     const shippingSelect = document.getElementById('types-of-shipments');
-    shippingSelect.addEventListener('change', function () {
-        updateTotal(subTotalValue);  // Actualizamos el total cuando cambie el tipo de envío
+    if (!shippingSelect) {
+        console.error("El elemento 'types-of-shipments' no existe en el DOM.");
+        return;
+    }
+
+    // Event listener para cambios en el tipo de envío
+    shippingSelect.addEventListener("change", function () {
+        const shippingCost = getShippingCost(savedTotal); 
+        console.log("Costo de envío calculado:", shippingCost);
+
+        const finalTotal = savedTotal + shippingCost;
+        console.log("Total final calculado:", finalTotal);
+
+        // Actualizar el contenido HTML
+        const totalCostElement = document.getElementById("total-cost");
+        if (totalCostElement) {
+            totalCostElement.innerHTML = `<i class="bi bi-arrow-right-square-fill"></i> Costo + envío: $${finalTotal.toFixed(2)}`;
+        } else {
+            console.error("El elemento 'total-cost' no existe en el DOM.");
+        }
+
+        // Guardar en localStorage si es necesario
+        localStorage.setItem("finalTotal", finalTotal);
     });
 });
 
-// Función para actualizar el total en el checkout
-function updateTotal(subTotalValue) {
-    const totalElement = document.getElementById("total-cost");
-    
-    // Llamar a la función que devuelve el costo de envío
-    const shippingCost = getShippingCost(subTotalValue); 
-    let totalValue = subTotalValue + shippingCost;
-    
-    // Mostrar el total con el envío
-    totalElement.innerHTML = `<i class="bi bi-arrow-right-square-fill"></i> Costo + envío: U$S ${totalValue.toFixed(2)}`; 
-}
-
 // Función para obtener el costo de envío según el tipo seleccionado
-function getShippingCost(subTotalValue) {
-
-    if(subTotalValue <= 0) {
+function getShippingCost(value) {
+    const shippingSelect = document.getElementById('types-of-shipments');
+    if (!shippingSelect) {
+        console.error("El elemento 'types-of-shipments' no existe en el DOM.");
         return 0;
     }
 
-    const shippingSelect = document.getElementById('types-of-shipments');
     const selectedShipping = shippingSelect.value;
-    
+
+    // Validamos que se haya seleccionado una opción válida
+    if (!selectedShipping) {
+        console.warn("Por favor, selecciona un tipo de envío.");
+        return 0;
+    }
+
+    console.log("Tipo de envío seleccionado:", selectedShipping);
+
     // Calculamos el costo final subtotal + envío seleccionado
+    const currencySelected = localStorage.getItem("currencySelected");
     switch (selectedShipping) {
         case 'premium':
-            return subTotalValue * 0.15;  // 15% del subtotal
+            return value * 0.15; // 15% del subtotal
         case 'express':
-            return subTotalValue * 0.07;  // 7% del subtotal
+            return value * 0.07; // 7% del subtotal
         case 'standard':
-            return subTotalValue * 0.05;  // 5% del subtotal
+            return value * 0.05; // 5% del subtotal
         case 'base':
-            return 10;    // Costo fijo de U$S 10
+            if (currencySelected === "UY") {
+                return 10 * 42; // Costo fijo en pesos uruguayos
+            } else {
+                return 10; // Costo fijo en dólares
+            }
         case 'plus':
-            return 0;     // Gratis
+            return 0; // Gratis
         default:
             return 0;
     }
-
 }
-
 
 function validateContinue1() {
     // Validar si el usuario tiene datos de identificación guardados
@@ -283,6 +304,7 @@ function validateContinue1() {
     // Si todo está bien, se puede continuar
     return true;
 }
+
 function validateContinue2(event) {
     if (event) event.preventDefault(); // Evitar la acción predeterminada
     console.log("Validando formulario...");
