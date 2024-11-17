@@ -337,6 +337,61 @@ document.getElementById("cart-to-checkout-1").addEventListener("click", function
 
 });
 
+// Función para actualizar el contador del carrito (badge)
+function updateCartBadge() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || []; // Recupera el carrito desde el almacenamiento local
+  const badge = document.getElementById('cart-badge'); // Obtiene el elemento del contador del carrito
+  badge.textContent = cart.length; // Actualiza el contador con la cantidad de productos en el carrito
+
+  // Muestra/oculta el badge según la cantidad de productos
+  if (cart.length === 0) {
+    badge.style.display = 'none'; // Oculta el badge si el carrito está vacío
+  } else {
+    badge.style.display = 'inline-block'; // Muestra el badge si hay productos en el carrito
+  }
+}
+
+// Función para agregar un producto al carrito
+function saveToCart(product) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || []; // Recupera el carrito desde el almacenamiento local
+
+  // Verificar si el producto ya está en el carrito
+  const cartItems = cart.some(item => item.id === product.id);
+
+  if (!cartItems) { // Si el producto no está en el carrito
+    cart.push(product); // Agrega el producto al carrito
+    localStorage.setItem("cart", JSON.stringify(cart)); // Guarda el carrito actualizado en el almacenamiento local
+    updateCartBadge(); // Actualiza el contador del carrito
+  } else {
+    alert('Este producto ya se encuentra en el carrito.'); // Muestra un mensaje si el producto ya está en el carrito
+  }
+
+  console.log(`Datos guardados en cart: ${JSON.stringify(cart)}`); // Imprime el carrito actualizado en la consola
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(productId) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || []; // Recupera el carrito desde el almacenamiento local
+
+  // Filtra los productos y elimina el que tiene el id proporcionado
+  cart = cart.filter(item => item.id !== productId);
+
+  // Guarda el carrito actualizado en el almacenamiento local
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Actualiza el contador del carrito
+  updateCartBadge();
+  
+  // Aquí podrías llamar a una función adicional para mostrar el carrito actualizado, si es necesario
+  // displayCart(); 
+}
+
+// Llamar a updateCartBadge() al cargar la página para inicializar el contador del carrito
+document.addEventListener("DOMContentLoaded", function() {
+  updateCartBadge(); // Asegura que el badge se actualice al cargar la página
+});
+
+// Al llamar a saveToCart o removeFromCart, se actualizará el badge automáticamente
 
 
 
