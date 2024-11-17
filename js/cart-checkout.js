@@ -212,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Guardar en localStorage si es necesario
         localStorage.setItem("finalTotal", finalTotal);
     });
+    addressForShipment();
 });
 
 // Función para obtener el costo de envío según el tipo seleccionado
@@ -312,6 +313,12 @@ function validateContinue2(event) {
     // Verificar el tipo de envío
     const shippingType = localStorage.getItem("shippingType");
     console.log("Tipo de envío seleccionado:", shippingType);
+    
+    if (shippingType) {
+       localStorage.setItem("shippingType", shippingType);
+       console.log("Tipo de envio guardado");
+    }
+
     if (!shippingType) {
         alert("Por favor, selecciona un tipo de envío.");
         return false;
@@ -319,7 +326,6 @@ function validateContinue2(event) {
 
     if (shippingType === "plus") {
         localStorage.setItem('userDiscounts', JSON.stringify('ZEN10'));
-        alert("Ganaste un cupón de descuento del 10% en tu próxima compra.");
     }
 
     // Validar método de pago seleccionado
@@ -382,7 +388,17 @@ function validateContinue2(event) {
     return true;
 }
 
-//Sabado Costos de Envio y Metodos de pa
+// Función para verificar y mostrar la dirección de envío
+function addressForShipment() {
+    const addressFS = localStorage.getItem('addresses');
+    if (addressFS) {
+        const addresses = JSON.parse(addressFS);
+        const defaultAddress = addresses.find(address => address.isDefault);
+        if (defaultAddress) {
+            document.getElementById('address-shipment').textContent = defaultAddress.addressText;
+        }
+    }
+}
 
 
 

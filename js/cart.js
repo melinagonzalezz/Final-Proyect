@@ -1,16 +1,74 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     displayCart();
-    updateCartBadge(); 
+    updateCartBadge();
     saveCurrency();
     updateSubTotal();
     loadDiscountCards();
+
+     const userName = localStorage.getItem("currentUsername");
+     const usernameDisplay = document.getElementById("username-display");
+     if (userName && usernameDisplay) {
+         usernameDisplay.textContent = userName;
+     }
+ 
+     const addDiscountBtn = document.getElementById("addDiscount");
+     if (addDiscountBtn) {
+         addDiscountBtn.addEventListener("click", discounts);
+     }
+ 
+     const checkoutBtn = document.getElementById("cart-to-checkout-1");
+     if (checkoutBtn) {
+         checkoutBtn.addEventListener("click", handleCheckout);
+     }
+     
 });
+
+function handleCheckout(e) {
+    e.preventDefault();
+
+    // Validar que el carrito no esté vacío
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cartItems.length === 0) {
+        alert("¡Por favor selecciona al menos un producto para continuar!");
+        return;
+    }
+
+    // Verificar aceptación de términos y condiciones
+    const termsCheckbox = document.getElementById("termsCheckbox");
+    if (!termsCheckbox || !termsCheckbox.checked) {
+        alert("Debes aceptar los términos y condiciones para continuar.");
+        return;
+    }
+
+    // Verificar que la moneda esté seleccionada
+    const currency = localStorage.getItem("selectedCurrency");
+    if (!currency) {
+        alert("La moneda no está seleccionada.");
+        return;
+    }
+
+    // Verificar que el total esté guardado
+    const totalSaved = localStorage.getItem("savedTotal");
+    if (!totalSaved || totalSaved === "0") {
+        console.log("No se ha guardado el total.");
+        return;
+    }
+
+    // Verificar si se han seleccionado descuentos
+    const discounts = JSON.parse(localStorage.getItem("selectedDiscount")) || [];
+    if (discounts.length > 0) {
+        console.log("Descuentos aplicados:", discounts);
+    }
+
+    // Redirigir al checkout si todo es válido
+    window.location.href = "cart-checkout.html";
+}
 
 // Verificar si se guardó algo en el carrito y mostrarlo
 function displayCart() {
     const cartItemsContainer = document.getElementById("cart-list");
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    cartItemsContainer.innerHTML = " ";
+    cartItemsContainer.innerHTML = "";
 
     if (cartItems.length === 0) {
         cartItemsContainer.innerHTML = `
@@ -87,16 +145,24 @@ function displayCart() {
 }
 
 // Función para cargar tarjetas de descuentos al cargar la página
-function loadDiscountCards() {
+function loadDiscountCards() { 
     const selectedDiscounts = JSON.parse(localStorage.getItem("selectedDiscount")) || [];
     const discountCardsContainer = document.getElementById("discountCards");
+    const userDiscounts = JSON.parse(localStorage.getItem("userDiscounts")) || []; // Assuming it's an array
     discountCardsContainer.innerHTML = "";
 
     selectedDiscounts.forEach(discount => {
         let discountAmount = calculateDiscountAmount(discount);
         showDiscountCard(discount, discountAmount);
     });
+
+    if (userDiscounts.includes("ZEN10") && !selectedDiscounts.includes("ZEN10")) {
+        let discountAmount = calculateDiscountAmount("ZEN10");
+        showDiscountCard("ZEN10", discountAmount); 
+        alert("Descuento Patience Plus aplicado por compra previa.");
+    }
 }
+
 
 // Función para calcular el monto del descuento basado en el código
 function calculateDiscountAmount(discount) {
@@ -112,22 +178,6 @@ function calculateDiscountAmount(discount) {
             }
             return 0;
     }
-}
-
-// Función para mostrar una tarjeta de descuento
-function showDiscountCard(discountInput, discountAmount) {
-    const discountCard = document.getElementById("discountCards");
-    const discountSign = discountAmount < 0 ? "-" : "+";
-    const formattedAmount = Math.abs(discountAmount).toFixed(2);
-
-    const card = document.createElement('div');
-    card.className = "d-flex justify-content-between bg-dark text-light p-2";
-    card.innerHTML = `
-        <p class="flex-fill mb-0">DESCUENTOS</p>
-        <p class="flex-fill mb-0">Código: ${discountInput}</p>
-        <p class="flex-fill mb-0">${discountSign} $${formattedAmount}</p>
-    `;
-    discountCard.appendChild(card);
 }
 
 // Función para actualizar el subtotal
@@ -261,7 +311,6 @@ function discounts() {
     localStorage.setItem("selectedDiscount", JSON.stringify(selectedDiscount));
     updateTotal();
 };
-document.getElementById("addDiscount").addEventListener("click", discounts);
 
 function saveCurrency() {
     const currencySelect = document.getElementById('currencySelect');
@@ -290,53 +339,3 @@ function removeCartItem(index) {
     updateCartBadge(); // Actualizar el badge
     displayCart();
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    const userName = localStorage.getItem('currentUsername');
-    const usernameDisplay = document.getElementById('username-display');
-    usernameDisplay.textContent = userName;
-});
-
-document.getElementById("cart-to-checkout-1").addEventListener("click", function (e) {
-    // Prevenir la redirección por defecto
-    e.preventDefault();
-
-    // Validar que el carrito no esté vacío
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    if (cartItems.length === 0) {
-        alert("¡Por favor selecciona al menos un producto para continuar!");
-        return false;
-    }
-
-    // Verificar si se aceptaron los términos y condiciones
-    const termsCheckbox = document.getElementById("termsCheckbox");
-    if (!termsCheckbox.checked) {
-        alert("Debes aceptar los términos y condiciones para continuar.");
-        return false;
-    }
-
-    // Verificar que la moneda esté guardada en localStorage
-    const currency = localStorage.getItem('selectedCurrency');
-    if (!currency) {
-        alert('La moneda no está seleccionada.');
-        return false;
-    }
-    
-    // Verificar que el total esté guardado en localStorage
-    const totalSaved = localStorage.getItem('savedTotal');    
-    if (!totalSaved || totalSaved === 0) {
-        console.log ("No se ha gruardado el total.");
-        return false
-    }
-    
-    // Verificar si se han seleccionado descuentos
-    const discounts = JSON.parse(localStorage.getItem('selectedDiscount')) || [];
-
-    if (discounts.length > 0) {
-        console.log('Descuentos aplicados:', discounts);
-    }
-
-    // Si todo es válido, proceder con la redirección al checkout
-    window.location.href = "cart-checkout.html";
-
-});
