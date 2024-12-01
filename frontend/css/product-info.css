@@ -1,0 +1,316 @@
+/* Estilo general */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Imagenes */
+.thumbnail {
+  filter: grayscale(100%);
+}
+
+/* Datos de producto */
+.product-content .product-name,
+.product-content .product-price p {
+    color: #000; 
+}
+
+.product-content .product-name {
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+}
+
+.product-content .product-sold,
+.product-content .product-code,
+.product-content .product-rating p,
+.product-content .product-colors label,
+.product-content .product-quantity label {
+    color: #666; 
+}
+
+.product-content .product-sold {
+  margin: 0;
+  padding: 0;
+}
+
+.product-content .product-rating p {
+  display: inline;
+}
+
+.product-content .product-rating {
+  margin: 0;
+  padding: 0;
+}
+
+.product-content h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #000;
+}
+
+.product-content .product-sold,
+.product-content .product-code {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.product-price p {
+    font-size: 2rem;
+    color: #000;
+}
+
+/* Botones */
+ #seccion-botones {
+  width: 100%;
+}
+.btn-primary {
+  background-color: black; 
+  border-color: black;
+}
+
+.btn-primary:hover {
+  background-color: #666;
+  border-color: #666;
+}
+
+
+#favBtn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  
+  }
+
+#btn-add-to-cart {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  }
+
+/* Detalles del producto - NAV */
+
+#myTab .nav-tabs {
+    border: none; 
+    border-bottom: 1px solid #333; 
+}
+
+#myTab .nav-link {
+    color: #333;
+    border: 1px solid transparent;
+    transition: border-bottom 0.3s ease, font-size 0.3s ease;
+}
+
+#myTab .nav-link.active {
+    font-size: 1.1rem; 
+    border-bottom: 3px solid #333; 
+    font-weight: 500;
+    color: #000;
+}
+
+#myTab .nav-link:hover {
+    font-weight: 500;
+}
+
+/* Ajuste del contenedor de comentarios*/
+
+#commentsContainer {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+}
+
+#comments-section{
+display: flex; 
+flex-wrap: wrap;
+justify-content: space-between;
+}
+
+/* Ajustes para las tarjetas de comentarios */
+.comentario {
+flex: 1 1 100%; 
+margin: 10px; 
+box-sizing: border-box;
+}  
+
+/* Estilos de la sección 'Te puede interesar' */
+
+#related-products {
+margin: 25px 10px;
+}
+
+#related-products .card {
+border: 1px solid #000000; 
+border-radius: 10px;
+padding: 15px;
+text-align: center;
+flex: none;
+width: 180px; 
+margin-right: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#related-products .card img {
+width: 100%;
+height: auto;
+border-radius: 5px; 
+background-color: #f4f4f4;
+}
+
+#related-products .card-title {
+margin-top: 10px;
+font-size: 14px;
+color: #333333;
+}
+
+#related-products .card-text {
+color: #333333;
+font-size: 16px;
+margin: 5px 0; 
+font-weight: bold; 
+}
+
+/* Sección de calificaciones */
+.rating-star {
+background: rgb(240, 240, 241);
+display: flex;
+flex-direction: row;
+gap: 5px;
+padding: 5px;
+border-radius: 5px;
+width: all;
+margin: 0 auto; 
+box-sizing: border-box;
+text-align: center;
+align-items: center; 
+justify-content: center; 
+}
+
+.rating-star h2 {
+font-size: 1.5em;
+margin-bottom: 10px;
+color: #333;
+}
+.rating-star {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+
+.star-icon {
+display: center;
+gap: 5px;
+}
+
+.star-input {
+display: none; 
+}
+
+/*HOVER Y COLOR DE ESTRELLAS*/
+
+.star-icon label {
+font-size: 25px;
+cursor: pointer;
+color: yellow; /* Color base de las estrellas sin seleccionar */
+}
+
+/* Efecto hover sobre las estrellas */
+.star-icon label:hover,
+.star-icon label:hover ~ label {
+color: rgb(212, 212, 219); /* Cambia el color de la estrella seleccionada y las anteriores */
+}
+
+/* Estrellas seleccionadas y las anteriores a la seleccionada */
+.star-icon input:checked + label,
+.star-icon input:checked + label ~ label {
+color: rgb(212, 212, 219); 
+}
+
+.star-icon label:hover,
+.star-icon input:checked+ label{
+color: yellow;
+}  
+
+/* Texto adicional */
+textarea {
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+resize: vertical;
+}
+
+#send-review-btn {
+padding: 10px 20px;
+background-color: #007bff; 
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+/* Media */
+
+/* Pantallas grandes (más de 1200px) */
+@media (min-width: 1200px) {
+#related-products .card {
+  min-width: calc(100% / 6); 
+  width: 150px;
+}
+}
+
+/* Pantallas medianas (500px a 768px) */
+@media (min-width: 501px) and (max-width: 768px) {
+#related-products .card {
+  min-width: calc(100% / 3);
+}
+
+.comentario {
+  flex: 1 1 48%;
+}
+}
+
+/* Pantallas pequeñas (menos de 500px) */
+@media (max-width: 500px) {
+#related-products .card {
+  min-width: 80%;
+  width: auto;
+}
+
+#related-products .row.flex-nowrap {
+  overflow-x: auto; 
+  -webkit-overflow-scrolling: touch;
+}
+
+#related-products .card {
+  scroll-snap-align: start; 
+}
+
+.comentario {
+  flex: 1 1 100%; 
+}
+}
+
+/* Pantallas muy pequeñas (menos de 425px) */
+
+@media (max-width: 425px) {
+#related-products .card {
+  max-width: 90%; 
+  width: 90%; 
+  margin-right: 0px; 
+}
+
+#related-products .row.flex-nowrap {
+  overflow-x: auto; 
+  scroll-snap-type: x mandatory; 
+  -webkit-overflow-scrolling: touch; 
+}
+
+#related-products .card {
+  scroll-snap-align: center; 
+}
+
+.comentario {
+  flex: 1 1 100%; 
+}
+}

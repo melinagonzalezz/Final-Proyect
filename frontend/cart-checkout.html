@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>eMercado - Todo lo que busques está aquí</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+   
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+  
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" >
+    
+    <link href="css/dark-mode.css" rel="stylesheet">
+    <link href="css/cart-checkout.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
+    <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
+      
+      <!-- Botón del menú hamburguesa y menú de enlaces -->
+      <div class="d-flex align-items-center">
+        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHidden" aria-controls="navbarHidden" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- Contenido del menú colapsable -->
+        <div class="collapse navbar-collapse" id="navbarHidden">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item m-0 me-4">
+              <img class="d-inline-block align-middle" src="img/logo.png">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      
+      <div class="navbar-icons  d-flex align-items-center  ">   
+        <a class="nav-link ms-3"> 
+          <button id="boton" class="btn modo-dia ms-3"><i class="bi bi-sun-fill"></i></button>
+        </a>
+  
+        <a href="my-profile.html" class="nav-link d-flex align-items-center">
+          <p id="username-display" class="mb-0 me-2"></p>
+          <i class="bi bi-person"></i>
+        </a>
+        <a href="favorites.html" class="nav-link ms-3">
+          <i class="bi bi-heart"></i>
+        </a>
+        <!-- badge del carrito -->
+        <a href="cart.html" class="nav-link ms-3">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-badge" class="badge bg-primary">0</span>
+        </a>
+      </div>
+    </div>
+    </nav>
+
+  <main class="m-4">
+    <section id="checkout-1">
+      <h2 class="my-2 mx-5">Checkout</h2>
+      <hr>
+      <h4 class="fw-bold mx-5 my-4">En este apartado podrás verificar tus datos de compra y elegir el método de envío</h4>
+  
+      <div class="container-fluid">
+        <!-- PASO 1: Identificación -->
+        <div class="row mb-4">
+          <div class="container box">
+              <h2 class="fw-bold mb-2">
+                  <i class="bi bi-1-circle-fill"></i> Identificación 
+                  <i class="bi bi-pencil-square float-end"></i>
+              </h2>
+
+              <div>
+                  <p><i class="bi bi-envelope-fill" id="display-email"></i> 
+                      <a href="login.html" class="text-muted"> No es mi usuario, abandonar sesión 
+                          <i class="bi bi-box-arrow-right"></i>
+                      </a> 
+                  </p>
+                  <p> <i class="bi bi-person-fill" id="display-name"></i> </p>
+                  <p> <i class="bi bi-telephone-fill" id="display-number"></i> </p>
+              </div>
+          </div>
+        </div>
+  
+        <!-- PASO 2: Envío -->
+        <div class="row">
+          <div class="container box">
+              <div class="position-relative d-flex flex-column flex-md-row ">
+                  <!-- Título y botones de opción -->
+                  <h2 class="fw-bold">
+                      <i class="bi bi-2-circle-fill"></i> Envío
+                  </h2>
+      
+                  <!-- Botones centrados -->
+                  <div class="d-flex justify-content-center mx-auto border" style="z-index: 0;">
+                      <button class="btn option-btn selected me-2">Retiro en tienda</button>
+                      <button class="btn option-btn">Enviar a dirección</button>
+                  </div>
+              </div>
+      
+              <div id="address-list" class="m-4">
+                  <!-- Sección de direcciones dinámicas -->
+                  <div class="d-flex justify-content-between">
+                      <p><i class="bi bi-house-fill"></i> Dirección predeterminada: Departamento, Localidad. Calle, piso/apto. </p>
+                  </div>
+              </div>
+      
+              <!-- Boton -->
+              <button class="btn btn-dark mb-4" type="button" id="edit-address-btn"><i class="bi bi-plus-lg"></i> Entregar en otra dirección</button>
+      
+              <!-- Imagen del mapa -->
+              <img src="img/mapa-local.jpg" alt="Mapa de ubicación" class="img-fluid" id="map-image">
+          </div>
+      </div>
+        
+        <!-- Volver al carrito y finalizar compra -->
+        <div class="row align-items-center mt-4">
+            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                <a href="cart.html">
+                    <i class="bi bi-chevron-left"></i> Volver al carrito
+                </a> 
+
+            </div>
+
+            <div class="col-12 col-md-4 ms-md-auto text-end">
+                <div class="d-inline-block my-4 w-100">
+                    <button class="btn btn-dark w-100 mb-2" type="button" id="goToCheckout2">Finalizar compra</button>
+
+                    <p class="mb-2 text-wrap">En el siguiente paso podrás elegir el método de pago y dar por finalizada la compra</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  
+    <section id="checkout-2" class="d-none">
+      <h2 class="my-2 mx-5">Checkout</h2>
+      <hr>
+      <h4 class="fw-bold mx-5 my-4">En este apartado te presentamos los métodos de pago disponibles</h4>
+    
+      <div class="container-fluid">
+        <!-- Paso 1: Envío -->
+        <div class="row mb-4">
+          <div class="container box">
+            <h2 class="fw-bold mb-2">
+              <i class="bi bi-2-circle-fill"></i> Envío
+              <i class="bi bi-pencil-square float-end"></i>
+            </h2>
+    
+            <div>
+              <p><i class="bi bi-house-fill" id="address-shipment"></i></p>
+              <div class="col-12 col-md-6 d-flex align-items-center">
+                <label for="types-of-shipments" class="form-label d-flex align-items-center mb-0 me-3"><i class="bi bi-send-plus-fill"></i></label>
+                <select class="form-select" id="types-of-shipments" aria-label="Tipos de envío" required>
+                  <option value="" selected disabled>Tipos de Envío </option>
+                  <option value="premium">Premium 2 a 5 días (15%)</option>
+                  <option value="express">Express 5 a 8 días (7%)</option>
+                  <option value="standard">Standard 12 a 15 días (5%)</option>
+                  <option value="base">Base 15 a 20 días U$S 10</option>
+                  <option value="plus">Paciencia Plus 20 a 30 días (Gratis + Cupón de 10% en próxima compra)</option>
+                </select>
+              </div>
+              <p class="mt-2" id="total-cost"> <i class="bi bi-arrow-right-square-fill"></i> Costo + envío: </p>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Paso 2: Métodos de pago -->
+        <div class="row mb-4">
+          <div class="container box">
+            <h2 class="fw-bold mb-2">
+              <i class="bi bi-3-circle-fill"></i> Métodos de pago
+            </h2>
+    
+            <ul class="nav nav-tabs gap-5 my-4 justify-content-around" id="paymentTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active text-dark fw-bold" id="debit-tab" data-bs-toggle="tab" data-bs-target="#debit"
+                  type="button" role="tab" aria-controls="debit" aria-selected="true">Débito</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark fw-bold" id="credit-tab" data-bs-toggle="tab" data-bs-target="#credit"
+                  type="button" role="tab" aria-controls="credit" aria-selected="false">Crédito</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark fw-bold" id="pickup-tab" data-bs-toggle="tab" data-bs-target="#pickup"
+                  type="button" role="tab" aria-controls="pickup" aria-selected="false">Pago en Sucursal</button>
+              </li>
+            </ul>
+    
+            <!-- Formas de pago -->
+            <div class="tab-content" id="paymentTabContent">
+              <!-- Débito -->
+              <div class="tab-pane fade show active" id="debit" role="tabpanel" aria-labelledby="debit-tab">
+                <div class="container">
+                  <form class="row" action="#">
+                    <!-- Número de tarjeta -->
+                    <div class="col-12 col-md-8" id="debit-form">
+                      <label for="number-debit" class="form-label">Número de tarjeta</label>
+                      <input type="text" id="number-debit" class="form-control rounded shadow" placeholder="XXXX XXXX XXXX XXXX" pattern="\d{4} \d{4} \d{4} \d{4}" inputmode="numeric" required>
+                    </div>
+                    <!-- Cuotas disponibles -->
+                    <div class="col-12 col-md-4">
+                      <label for="quotas-debit" class="form-label">Cuotas disponibles</label>
+                      <select class="form-select rounded shadow" id="quotas-debit" aria-label="Cuotas disponibles" required>
+                        <option value="" selected disabled>Seleccione cuotas</option>
+                        <option value="1">1 cuota</option>
+                      </select>
+                    </div>
+                    <!-- Fecha de vencimiento -->
+                    <div class="col-12 col-md-6 gap-2 d-flex align-items-center my-2">
+                      <label for="expirationM-debit" class="form-label mb-0 me-2">Fecha de vencimiento:</label>
+                      <select class="form-select rounded shadow" id="expirationM-debit" aria-label="Expiración meses" required>
+                        <option value="" selected disabled>Mes</option>
+                        <option value="Enero">Enero</option>
+                        <option value="Febrero">Febrero</option>
+                        <option value="Marzo">Marzo</option>
+                        <option value="Abril">Abril</option>
+                        <option value="Mayo">Mayo</option>
+                        <option value="Junio">Junio</option>
+                        <option value="Julio">Julio</option>
+                        <option value="Agosto">Agosto</option>
+                        <option value="Septiembre">Septiembre</option>
+                        <option value="Octubre">Octubre</option>
+                        <option value="Noviembre">Noviembre</option>
+                        <option value="Diciembre">Diciembre</option>
+                      </select>
+    
+                      <select class="form-select rounded shadow" id="expirationA-debit" aria-label="Expiración años" required>
+                        <option value="" selected disabled>Año</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                      </select>
+                    </div>
+                    <!-- Código de seguridad -->
+                    <div class="col-12 col-md-3 d-flex align-items-center my-2">
+                      <label for="security-debit" class="form-label mb-0 me-2">Código de seguridad</label>
+                      <input type="text" id="security-debit" class="form-control rounded shadow" placeholder="CVV" pattern="\d{3,4}" required>
+                    </div>
+                      <!-- Nombre del titular -->
+                    <div class="col-12 col-md-6 my-2">
+                      <label for="card-name-debit" class="form-label">Nombre del titular de la tarjeta</label>
+                      <input type="text" id="card-name-debit" class="form-control rounded shadow" placeholder="Nombre y Apellido" required pattern="[A-Za-z\s]+" title="El nombre debe contener solo letras">
+                    </div>
+                    <!-- Botón de conservación de información -->
+                    <div class="col-12 col-md-8 my-4">
+                      <button class="btn btn-dark w-100 mb-2" type="button" id="keep-information-debit">Conservar la información</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+    
+              <!-- Crédito -->
+              <div class="tab-pane fade" id="credit" role="tabpanel" aria-labelledby="credit-tab">
+                <div class="container">
+                  <form class="row" action="#">
+                    <!-- Número de tarjeta -->
+                    <div class="col-12 col-md-8">
+                      <label for="number-credit" class="form-label">Número de tarjeta</label>
+                      <input type="text" id="number-credit" class="form-control rounded shadow" placeholder="XXXX XXXX XXXX XXXX" pattern="\d{4} \d{4} \d{4} \d{4}" inputmode="numeric" required>
+                    </div>
+                    <!-- Cuotas disponibles -->
+                    <div class="col-12 col-md-4">
+                      <label for="quotas-credit" class="form-label">Cuotas disponibles</label>
+                      <select class="form-select rounded shadow" id="quotas-credit" aria-label="Cuotas disponibles" required>
+                        <option value="" selected disabled>Seleccione cuotas</option>
+                        <option value="1">1 cuota</option>
+                        <option value="2">2 cuotas</option>
+                        <option value="3">3 cuotas</option>
+                        <option value="4">4 cuotas</option>
+                        <option value="5">5 cuotas</option>
+                        <option value="6">6 cuotas</option>
+                        <option value="7">7 cuotas</option>
+                        <option value="8">8 cuotas</option>
+                        <option value="9">9 cuotas</option>
+                        <option value="10">10 cuotas</option>
+                        <option value="11">11 cuotas</option>
+                        <option value="12">12 cuotas</option>
+                      </select>
+                    </div>
+                    <!-- Fecha de vencimiento -->
+                    <div class="col-12 col-md-6 gap-2 d-flex align-items-center my-2">
+                      <label for="expirationM-credit" class="form-label mb-0 me-2">Fecha de vencimiento:</label>
+                      <select class="form-select rounded shadow" id="expirationM-credit" aria-label="Expiración meses" required>
+                        <option value="" selected disabled>Mes</option>
+                        <option value="Enero">Enero</option>
+                        <option value="Febrero">Febrero</option>
+                        <option value="Marzo">Marzo</option>
+                        <option value="Abril">Abril</option>
+                        <option value="Mayo">Mayo</option>
+                        <option value="Junio">Junio</option>
+                        <option value="Julio">Julio</option>
+                        <option value="Agosto">Agosto</option>
+                        <option value="Septiembre">Septiembre</option>
+                        <option value="Octubre">Octubre</option>
+                        <option value="Noviembre">Noviembre</option>
+                        <option value="Diciembre">Diciembre</option>
+                      </select>
+    
+                      <select class="form-select rounded shadow" id="expirationA-credit" aria-label="Expiración años" required>
+                        <option value="" selected disabled>Año</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                      </select>
+                    </div>
+                    <!-- Código de seguridad -->
+                    <div class="col-12 col-md-3 d-flex align-items-center my-2">
+                      <label for="security-credit" class="form-label mb-0 me-2">Código de seguridad</label>
+                      <input type="text" id="security-credit" class="form-control rounded shadow" placeholder="CVV" pattern="\d{3,4}" required>
+                    </div>
+                    <!-- Nombre del titular -->
+                    <div class="col-12 col-md-6 my-2">
+                      <label for="card-name-credit" class="form-label">Nombre del titular de la tarjeta</label>
+                      <input type="text" id="card-name-credit" class="form-control rounded shadow" placeholder="Nombre y Apellido" required pattern="[A-Za-z\s]+" title="El nombre debe contener solo letras">
+                    </div>
+                    <!-- Botón de conservación de información -->
+                    <div class="col-12 col-md-8 my-4">
+                      <button class="btn btn-dark w-100 mb-2" type="button" id="keep-information-credit">Conservar la información</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+    
+              <!-- Pago en Pick Up -->
+              <div class="tab-pane fade" id="pickup" role="tabpanel" aria-labelledby="pickup-tab">
+                <div class="container my-4">
+                  <h2 class="fw-bold">Pago en Sucursal</h2>
+                  <p class="mt-3 fs-5">
+                    El pago de productos en sucursal a partir de los U$S 5.000* es únicamente a través de transferencia
+                    bancaria.
+                  </p>
+                  <h4>Trabajamos con todos los bancos</h4>
+                  <h4 class="mt-4">Números de cuenta:</h4>
+                  <ul class="list-group">
+                    <li class="list-group-item m-1"><strong>HSBC:</strong> 123-456789-0</li>
+                    <li class="list-group-item m-1"><strong>BROU:</strong> 987654-321</li>
+                    <li class="list-group-item m-1"><strong>Santander:</strong> 11223344</li>
+                    <li class="list-group-item m-1"><strong>Scotiabank:</strong> 22334455</li>
+                    <li class="list-group-item m-1"><strong>Itau:</strong> 99887766</li>
+                  </ul>
+                  <p class="my-4 fs-5">
+                    <i class="bi bi-bank2"></i> Se recomienda realizar la transferencia el día previo al retiro para evitar
+                    problemas de pago a la hora de transferir en el momento.
+                  </p>
+                  <p class="fs-5">
+                    <i class="bi bi-file-text-fill"></i> No olvidar concurrir con el comprobante de pago para verificar el
+                    ingreso del dinero.
+                  </p>
+                  <p class="my-5 text-muted">
+                    *La Ley de Inclusión Financiera de Uruguay restringe el uso de efectivo en operaciones que superan los
+                    U$S 5.000 cuando una de las partes es una empresa unipersonal o persona jurídica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row align-items-center mt-4">
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <a href="#" id="backToCheckout1">
+              <i class="bi bi-chevron-left"></i> Volver al checkout
+            </a>
+          </div>
+          <div class="col-12 col-md-4 ms-md-auto my-4 text-end">
+            <div class="d-inline-block my-4 w-100">
+              <p class="mb-2 text-wrap">Una vez realizada la compra los términos y condiciones son aceptados por el
+                usuario</p>
+              <button class="btn btn-dark w-100 mb-2" type="button" id="goToCheckout3">Finalizar mi compra</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section id="checkout-3" class="d-none">
+        <h2 class="mt-2 ms-4">Finalización de la compra</h2>
+        <hr>
+    
+        <div class="container-fluid">
+            <div class="row">
+            <h1 class="fw-bold text-center my-5">¡Compra realizada con éxito!</h1>
+    
+            <h4 class="fw-bold text-center my-4 mb-5"><i class="bi bi-envelope-fill"></i>
+                Asegúrate de revisar tu casilla de email con la <br> confirmación de tu compra y los datos de facturación.</h4>
+
+                        <div class="container rating-star my-5 experience">
+                            
+                            <form>
+                            <div class="rating">
+                                <input type="radio" name="rating" id="star1" value="1"><label for="star1"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" id="star2" value="2"><label for="star2"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" id="star3" value="3"><label for="star3"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" id="star4" value="4"><label for="star4"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" id="star5" value="5"><label for="star5"><i class="fas fa-star"></i></label>
+                            </div>
+                        <br>
+                        <label class="form-label fw-bold fs-5" for="exp">¿Qué tal tu experiencia de compra?</label> <br>
+                        <textarea name="experiencia" id="exp" placeholder="Ingresa aquí comentarios o sugerencias que tengas sobre nuestra tienda de servicios"></textarea>
+                        <br>
+                        <button class="btn btn-dark my-3 float-start" type="submit">Enviar</button>
+                    </form>
+                        </div> 
+                        
+                        <div class="row align-items-center mt-4">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                <a href="#" id="backToCheckout2">
+                                    <i class="bi bi-chevron-left"></i> Volver atras
+                                </a> 
+                            </div>
+                            <div class="col-12 col-md-4 ms-md-auto my-4 text-end">
+                                <div class="d-inline-block my-4 w-100">
+                                    <h3 class="fw-bold mb-3 text me-5">¡Gracias por Elegirnos!</h3>
+                                    <a href="index.html" class="btn btn-dark text me-5">Volver al inicio</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </section>
+
+  </main>
+
+  <footer class="text-muted">
+      <div class="container">
+          <br>
+          <nav>
+              <ul>
+                  <li><a href="#">Políticas de la empresa</a></li>
+                  <br>
+                  <li><a href="#">Sobre Nosotros</a></li>
+                  <br>
+                  <li><a href="#">Contáctanos</a></li>
+                  <br>
+                  <li><a href="#">Métodos de pago</a></li>
+                  <br>
+              </ul>
+          </nav>
+          <br>
+          <p class="float-end"><a href="#">Volver arriba</a></p>
+          <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      </div>
+  </footer>
+
+  <div id="spinner-wrapper">
+      <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/cart-checkout.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

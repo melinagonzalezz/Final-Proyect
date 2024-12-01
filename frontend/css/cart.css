@@ -1,0 +1,59 @@
+body {
+    background-color: rgb(236, 234, 234);
+}
+
+.currency, .btn {
+    border-radius: 8px;
+}
+
+/* Saca las flechas dentro del input de cantidad*/
+    input [type="number"] {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;   
+        appearance: none;          
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; 
+    } 
+
+/* Para pantallas pequeñas */
+@media (max-width: 600px) {
+    body {
+        background-color: rgb(240, 240, 240);
+    }
+
+    .currency, .btn {
+        padding: 8px 16px; 
+        font-size: 14px;
+    }
+
+    input[type="number"] {
+        font-size: 16px;
+    }
+}
+
+/* Para pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .currency, .btn {
+        padding: 10px 18px; 
+        font-size: 16px;
+    }
+
+    input[type="number"] {
+        font-size: 18px; 
+    }
+}
+
+/* para pantallas grandes */
+@media (min-width: 1025px) {
+    .currency, .btn {
+        padding: 12px 20px;
+        font-size: 18px;
+    }
+
+    input[type="number"] {
+        font-size: 20px; 
+    }
+}

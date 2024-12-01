@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="css/dark-mode.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
+    <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
+      
+      <!-- Botón del menú hamburguesa y menú de enlaces -->
+      <div class="d-flex align-items-center">
+        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHidden" aria-controls="navbarHidden" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- Contenido del menú colapsable -->
+        <div class="collapse navbar-collapse" id="navbarHidden">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item m-0 me-4">
+              <img class="d-inline-block align-middle" src="img/logo.png">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      
+
+      <!-- Íconos de usuario, favorito y carrito alineados a la derecha -->
+      <div class="d-flex align-items-center">
+        <a class="nav-link ms-3"> 
+          <button id="boton" class="btn modo-dia ms-3"><i class="bi bi-sun-fill"></i></button>
+        </a>
+        
+        <div id="navbarDarkDropdown" class="m-0">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                  <button class="btn btn-dark dropdown-toggle" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span id="username-display"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark position-absolute" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                      <li><a class="dropdown-item" href="favorites.html">Mis favoritos</a></li>
+                      <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" id="logoutButton">Cerrar sesión</a></li>
+                  </ul>
+              </li>
+            </ul>
+        </div>
+      </div>
+      
+    </div>
+    </nav>
+  
+  <main>
+    <div class="jumbotron text-center"></div>
+    <div class="album py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
+              <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
+                alt="Imgagen representativa de la categoría 'Autos'">
+              <h3 class="m-3">Autos</h3>
+              <div class="card-body">
+                <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
+              <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
+                alt="Imgagen representativa de la categoría 'Juguetes'">
+              <h3 class="m-3">Juguetes</h3>
+              <div class="card-body">
+                <p class="card-text">Encuentra aquí los mejores precios para niños/as de cualquier edad.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
+              <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
+                alt="Imgagen representativa de la categoría 'Muebles'">
+              <h3 class="m-3">Muebles</h3>
+              <div class="card-body">
+                <p class="card-text">Muebles antiguos, nuevos y para ser armados por uno mismo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <a class="more btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-icon">
+      <a href="hidden/party.html">
+        <span>
+          <i class="bi bi-question-circle-fill"></i> 
+        </span>
+      </a>
+    </div>
+    
+    
+  </main>
+  
+  <footer class="text-muted">
+    <div class="container">
+      <br>
+      <nav>
+        <ul>
+          <li><a href="#">Políticas de la empresa</a></li>
+          <br>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <br>
+          <li><a href="#">Contáctanos</a></li>
+          <br>
+          <li><a href="#">Métodos de pago</a></li>
+          <br>
+        </ul>
+      </nav>
+    <br>
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    </div>
+</footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/init.js"></script>
+</body>
+
+</html>

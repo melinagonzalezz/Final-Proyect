@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+ 
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"  rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+ 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" >
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/products.css" rel="stylesheet">
+  <link href="css/footer.css" rel="stylesheet">
+  <link href="css/dark-mode.css" rel="stylesheet">
+ 
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-dark">
+    <div class="container-fluid px-5 d-flex justify-content-between align-items-center">
+      
+      <!-- Botón del menú hamburguesa y menú de enlaces -->
+      <div class="d-flex align-items-center">
+        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHidden" aria-controls="navbarHidden" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- Contenido del menú colapsable -->
+        <div class="collapse navbar-collapse" id="navbarHidden">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item m-0 me-4">
+              <img class="d-inline-block align-middle" src="img/logo.png">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      
+      <div class="navbar-icons  d-flex align-items-center  ">   
+        <a class="nav-link ms-3"> 
+          <button id="boton" class="btn modo-dia ms-3"><i class="bi bi-sun-fill"></i></button>
+        </a>
+  
+        <a href="my-profile.html" class="nav-link d-flex align-items-center">
+          <p id="username-display" class="mb-0 me-2">Usuario</p>
+          <i class="bi bi-person"></i>
+        </a>
+        <a href="favorites.html" class="nav-link ms-3">
+          <i class="bi bi-heart"></i>
+        </a>
+        <!-- badge del carrito -->
+        <a href="cart.html" class="nav-link ms-3">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-badge" class="badge bg-primary">0</span>
+        </a>
+      </div>
+    </div>
+    </nav>
+
+<!-- Breadcrumbs - Navegador de rutas -->
+<nav aria-label="breadcrumb" class="px-5 mb-0 col-12">
+  <ol class="breadcrumb align-items-center pt-4">
+    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="categories.html">Categoría</a></li>
+    <li class="breadcrumb-item"><a href="products.html">Listado de Productos</a></li>
+    <li class="breadcrumb-item active" aria-current="page"></li>
+  </ol>
+</nav>
+
+  <main class="container pb-5">
+    <div class="col-12">
+      <br>
+      <h1 class="text-right"></h1>
+      <br>
+      <div class="row align-items-end my-3">
+        <h6 class="col-8 my-0"></h6>
+
+        <!-- Íconos del lado derecho -->
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <div class="btn-group" role="group" aria-label="Formato de visualización">
+            <button id="grid-view" type="button" class="btn" aria-label="En lista">
+              <i class="bi bi-grid-3x3"></i>
+            </button>
+            <button id="list-view" type="button" class="btn" aria-label="En grilla">
+              <i class="bi bi-list"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros --> 
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <label for="sort-options" class="form-label"> Ordenar por: </label>
+        <select class="form-select" id="sort-options">
+          <option value="asc-price"> Precio ascendente</option>
+          <option value="des-price"> Precio descendente</option>
+          <option value="des-relevance"> Mayor relevancia</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="buscador" class="form-label"> Buscar</label>
+        <input type="search" id="buscador" class="form-control" placeholder="Encuentra tu producto preferido">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-4">
+       <label for="min-price" class="form-label"> Precio Mínimo </label>
+       <input type="number" class="form-control" id="min-price" placeholder="Precio mínimo">
+      </div>
+      <div class="col-md-4">
+        <label for="max-price" class="form-label"> Precio Máximo </label>
+        <input type="number" class="form-control" id="max-price" placeholder="Precio máximo">
+     </div>
+     <div>
+      <button class="btn btn-primary mt-4" id="clear-filter"> Limpiar </button>
+      </div>
+    </div>
+
+    <section id="product-list" class="product-list grid-view-product-list"></section>
+
+  </main>
+
+  <footer class="text-muted">
+    <div class="container">
+      <br>
+      <nav>
+        <ul>
+          <li><a href="#">Políticas de la empresa</a></li>
+          <br>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <br>
+          <li><a href="#">Contáctanos</a></li>
+          <br>
+          <li><a href="#">Métodos de pago</a></li>
+          <br>
+        </ul>
+      </nav>
+      <br>
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    </div>
+  </footer>
+
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/products.js"></script>
+</body>
+
+</html>
